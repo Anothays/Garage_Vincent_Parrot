@@ -1,0 +1,55 @@
+{% apply inky_to_html %}
+    <container>
+        <row>
+            <columns>
+                <spacer size="16"></spacer>
+                <h1
+                    class="text-center"
+                    style="
+                        padding: 20px;
+                        text-decoration: none;
+                        list-style: none;
+                        font-family: sans-serif;
+                        "
+                >
+                    Bienvenue {{ firstname }} !
+                </h1>
+                <p
+                    class="m-2"
+                    style="
+                        padding: 25px;
+                        text-decoration: none;
+                        list-style: none;
+                        font-family: sans-serif;
+                        "
+                >
+                    Afin de finaliser votre inscription, veuillez cliquer sur le lien de confirmation
+                </p>
+                <spacer size="16"></spacer>
+
+                <a
+                        href="{{ url }}"
+                        style="
+                        padding: 20px;
+                        margin: 10px;
+                        color: white;
+                        background-color: #343a40;
+                        text-decoration: none;
+                        list-style: none;
+                        text-transform: uppercase;
+                        font-size: .875rem;
+                        font-weight: 600;
+                        font-family: sans-serif;
+                        "
+
+                >
+                    Validez votre inscription
+                </a>
+                <spacer size="16"></spacer>
+                <div style="margin-top: 20px">
+                    <img class="m-3"  src="{{ email.image('@images/logo4.webp') }}" alt="Logo">
+                </div>
+            </columns>
+        </row>
+    </container>
+{% endapply %}

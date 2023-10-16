@@ -1,0 +1,23 @@
+<div class="p-lg-5 d-flex justify-content-center flex-column text-center">
+    {% if schedule is not null %}
+        <p class="text-uppercase">Horaires d'ouverture</p>
+        <ul class="list-unstyled">
+            {% for day in schedule %}
+                <li>
+                    <p class="text-uppercase">{{ day }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if garage is not null %}
+        <address class="pt-5">
+            <p class="text-white text-uppercase">Contactez-nous</p>
+            <p>Par téléphone : <a class="text-white" href="tel:{{ garage.phoneNumber }}">{{ garage.phoneNumber }}</a></p>
+            <p>Par email : <a href="mailto:{{ garage.email }}" class="text-light">{{ garage.email }}</a></p>
+            <p>Adresse : {{ garage.address }}</p>
+        </address>
+    {% endif %}
+</div>
+<div class="text-center">
+    <span>© {{ "now"|date("Y") }} - Garage V.Parrot - <a class="text-white" href="{{ path('app_legal_notice') }}">Mentions Légales</a></span>
+</div>

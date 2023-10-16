@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+
+{% block main %}
+    <h1 class="text-center m-5">Mentions légales</h1>
+
+    <div class="container">
+        <div class="p-5 bg-warning-subtle">
+            <strong  class="fw-bold">
+                Le texte ci-dessous constitue les mentions légales d'un site vitrine représentant une entreprise factice.
+                Ce site web s'inscrit dans le cadre d'une évaluation de fin de formation initiée par l'organisme <a href="https://www.studi.com/fr">STUDI</a>.
+                En conséquence, toutes les données apparaissant dans le présent texte, et sur le site dans son entièreté,
+                ne sont reliées d'aucune manière à une personne physique ou morale existante.
+                Toutes les images utilisées pour l'illustration du présent site web sont fournies par le site <a href="https://pixabay.com/fr/service/license-summary/">Pixabay</a>.
+                Ces images sont sous licence <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.fr">"Creative Commons Zero (CC0)"</a>.
+            </strong>
+
+        </div>
+
+        <br><br>
+
+
+        <p>
+            Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique,
+            il est précisé aux utilisateurs du site <b>Oculus V Parrot</b> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.
+        </p>
+
+        <h2><b>1. Edition du site</b></h2>
+        <p><span style="font-weight: 400;">Le présent site, accessible à l’URL <a href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a> (le « Site »), est édité par :</span></p>
+        <p><span style="font-weight: 400;">
+            <b>Oculus V Parrot</b>, société au capital de 50 000 euros, inscrite au R.C.S. de TOULOUSE sous le numéro RCS TOULOUSE X 000 000 000,
+            dont le siège social est situé au 7 avenue du vase de Soissons 31000 Toulouse, représenté(e) par Vincent Parrot dûment habilité(e)
+        </span></p>
+        <p><span>Le numéro individuel TVA de l’éditeur est : FR 40 123456789.</span></p>
+
+        <h2><b>2. Hébergement</b></h2>
+        <p>
+            Le Site est hébergé par la société <a href="https://www.heroku.com/">Heroku</a>, situé 415 Mission Street Suite 300 San Francisco, CA 94105,
+            (contact téléphonique ou email : <a href="tel:+33123456789">+33123456789</a> ).
+        </p>
+
+        <h2><b>3. Directeur de publication</b></h2>
+        <p><span style="font-weight: 400;">Le Directeur de la publication du Site est Vincent Parrot.</span></p>
+
+        <h2><b>4. Nous contacter</b></h2>
+        <p><span style="font-weight: 400;">Par téléphone <a href="tel:{{ garage.phoneNumber }}">{{ garage.phoneNumber }}</a></span></p>
+        <p><span style="font-weight: 400;">Par email : <a href="{{ garage.email }}">{{ garage.email }}</a></span></p>
+        <p><span style="font-weight: 400;">Par courrier : {{ garage.address }}</span></p>
+
+        <h2><b>5. Données personnelles&nbsp;</b></h2>
+        <p>
+        <span style="font-weight: 400;">
+            Les seules données personnelles enregistrées dans notre base de données sont celles que vous consentez
+            à partager lors de la soumission de notre formulaire de contact. Ces informations n'ont pour but que de nous permettre de vous recontacter en cas de besoin.
+            Le traitement de vos données à caractère personnel est régi par le Règlement Général sur la Protection des Données
+            2016/679 du 27 avril 2016 («RGPD»).
+        </span>
+        </p>
+
+    </div>
+{% endblock %}

@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="FR-fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="Jérémy Sananikone">
+        <meta name="description" content="Garage automobile fictif, proposant des services de réparation et d'entretien, et la vente de véhicules d'occasion.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <title>{% block title %}Garage Vincent Parrot{% endblock %}</title>
+        <link rel="icon" href="{{ asset('media/logo4.webp') }}" type="image/png">
+
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-Lux.min.css') }}">
         {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+        <script defer src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            {{ include('header.html.twig') }}
+        </header>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info text-center">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger text-center">{{ message }}</div>
+        {% endfor %}
+
+        <main id="mainSection">
+            {% block main %}{% endblock %}
+        </main>
+        <footer class="w-100 bg-primary text-light">
+            {{ render(controller('App\\Controller\\FooterController::index')) }}
+        </footer>
     </body>
+
 </html>
