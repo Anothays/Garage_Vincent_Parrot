@@ -31,12 +31,46 @@ class Service
     #[ORM\ManyToMany(targetEntity: Garage::class, inversedBy: 'services')]
     private Collection $garages;
 
-    #[ORM\OneToOne(mappedBy: 'service', cascade: ['persist', 'remove'])]
-    private ?ImageService $imageService = null;
+//    #[ORM\OneToOne(mappedBy: 'service', targetEntity: ImageService::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+//    private ?ImageService $imageService = null;
+
+    #[ORM\OneToMany(mappedBy: 'service', targetEntity: ImageService::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $imageServices;
+
+    /**
+     * @return Collection<int, ImageService>
+     */
+    public function getImageServices(): Collection
+    {
+        return $this->imageServices;
+    }
+
+    public function addImageService(ImageService $imageService): static
+    {
+        if (!$this->imageServices->contains($imageService)) {
+            $this->imageServices->add($imageService);
+            $imageService->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImageService(ImageService $imageService): static
+    {
+        if ($this->imageServices->removeElement($imageService)) {
+            // set the owning side to null (unless already changed)
+            if ($imageService->getService() === $this) {
+                $imageService->setService(null);
+            }
+        }
+
+        return $this;
+    }
 
     public function __construct()
     {
         $this->garages = new ArrayCollection();
+        $this->imageServices = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -121,20 +155,20 @@ class Service
         return $this;
     }
 
-    public function getImageService(): ?ImageService
-    {
-        return $this->imageService;
-    }
-
-    public function setImageService(ImageService $imageService): static
-    {
-        // set the owning side of the relation if necessary
-        if ($imageService->getService() !== $this) {
-            $imageService->setService($this);
-        }
-
-        $this->imageService = $imageService;
-
-        return $this;
-    }
+//    public function getImageService(): ?ImageService
+//    {
+//        return $this->imageService;
+//    }
+//
+//    public function setImageService(ImageService $imageService): static
+//    {
+//        // set the owning side of the relation if necessary
+//        if ($imageService->getService() !== $this) {
+//            $imageService->setService($this);
+//        }
+//
+//        $this->imageService = $imageService;
+//
+//        return $this;
+//    }
 }

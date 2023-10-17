@@ -126,17 +126,17 @@ class CarsCrudController extends AbstractCrudController
         parent::updateEntity($entityManager, $entityInstance);
     }
 
-    public function createMediaFolder(Car $entityInstance): void
-    {
-        $licencePlate = strtoupper($entityInstance->getLicensePlate());
-        mkdir("media/{$licencePlate}");
-    }
+//    public function createMediaFolder(Car $entityInstance): void
+//    {
+//        $licencePlate = strtoupper($entityInstance->getLicensePlate());
+//        mkdir("media/{$licencePlate}");
+//    }
 
-    public function removeMediaFolder(Car $entityInstance): void
-    {
-        $licencePlate = strtoupper($entityInstance->getLicensePlate());
-        rmdir("media/{$licencePlate}");
-    }
+//    public function removeMediaFolder(Car $entityInstance): void
+//    {
+//        $licencePlate = strtoupper($entityInstance->getLicensePlate());
+//        rmdir("media/{$licencePlate}");
+//    }
     protected function processUploadedFiles(FormInterface $form): void
     {
         /** @var FormInterface $child */

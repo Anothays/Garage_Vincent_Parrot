@@ -26,7 +26,7 @@ class ImageCrudController extends AbstractCrudController
         if (method_exists($entity,'getImageCars')) {
             $image = [...$context->getRoot()->getData()->getImageCars()][0];
         } else {
-            $image = $context->getRoot()->getData()->getImageService();
+            $image = $context->getRoot()->getData()->getImageServices()[0];
         }
         if (empty($file) && !empty($image->getAlt())) {
             $context

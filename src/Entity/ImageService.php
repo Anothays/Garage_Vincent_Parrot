@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ImageServiceRepository::class)]
 class ImageService extends Image
 {
-    #[ORM\OneToOne(inversedBy: 'imageService', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'imageServices')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Service $service = null;
 
@@ -17,7 +17,7 @@ class ImageService extends Image
         return $this->service;
     }
 
-    public function setService(Service $service): static
+    public function setService(?Service $service): static
     {
         $this->service = $service;
 

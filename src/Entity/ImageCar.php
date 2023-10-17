@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ImageCarRepository::class)]
 class ImageCar extends Image
 {
-    #[ORM\ManyToOne(inversedBy: 'imageCars')]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'], inversedBy: 'imageCars')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Car $car = null;
 

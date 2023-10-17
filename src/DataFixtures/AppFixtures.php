@@ -160,7 +160,8 @@ class AppFixtures extends Fixture
             ->setDescription($this->faker->text(300))
             ->setPrice(80)
             ->setPublished(true)
-            ->setImageService($image1);
+            ->addImageService($image1);
+//            ->setImageService($image1);
         copy("src/DataFixtures/images/services/Entretien et vidange.webp", "public/media/uploads/{$image1->getFilename()}");
         $manager->persist($service1);
 
@@ -175,7 +176,8 @@ class AppFixtures extends Fixture
             ->setDescription($this->faker->text(300))
             ->setPrice(90)
             ->setPublished(true)
-            ->setImageService($image2);
+            ->addImageService($image2);
+//            ->setImageService($image2);
         copy("src/DataFixtures/images/services/Revision.webp", "public/media/uploads/{$image2->getFilename()}");
         $manager->persist($service2);
 
@@ -190,7 +192,8 @@ class AppFixtures extends Fixture
             ->setDescription($this->faker->text(300))
             ->setPrice(499)
             ->setPublished(true)
-            ->setImageService($image3);
+            ->addImageService($image3);
+//            ->setImageService($image3);
         copy("src/DataFixtures/images/services/Courroie.webp", "public/media/uploads/{$image3->getFilename()}");
         $manager->persist($service3);
 
@@ -205,7 +208,8 @@ class AppFixtures extends Fixture
             ->setDescription($this->faker->text(300))
             ->setPrice(80)
             ->setPublished(true)
-            ->setImageService($image4);
+            ->addImageService($image4);
+//            ->setImageService($image4);
         copy("src/DataFixtures/images/services/Pneumatique.webp", "public/media/uploads/{$image4->getFilename()}");
         $manager->persist($service4);
 
@@ -220,7 +224,8 @@ class AppFixtures extends Fixture
             ->setDescription($this->faker->text(300))
             ->setPrice(80)
             ->setPublished(true)
-            ->setImageService($image5);
+            ->addImageService($image5);
+//            ->setImageService($image5);
         copy("src/DataFixtures/images/services/Plaquettes de frein.webp", "public/media/uploads/{$image5->getFilename()}");
         $manager->persist($service5);
 
