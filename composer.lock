@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c87b7b625abc87abea6c412724395fd5",
+    "content-hash": "18557e4cacf994f4ebb819d0aecc9f23",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -3304,12 +3304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
-                "reference": "06bf83fbd9d17da8d2a574921c87960406ab5076"
+                "reference": "b6c5be9c6cf7c989412c6fab07ef4b2a9f2c3fa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/error-handler/zipball/06bf83fbd9d17da8d2a574921c87960406ab5076",
-                "reference": "06bf83fbd9d17da8d2a574921c87960406ab5076",
+                "url": "https://api.github.com/repos/symfony/error-handler/zipball/b6c5be9c6cf7c989412c6fab07ef4b2a9f2c3fa9",
+                "reference": "b6c5be9c6cf7c989412c6fab07ef4b2a9f2c3fa9",
                 "shasum": ""
             },
             "require": {
@@ -3371,7 +3371,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-16T20:01:45+00:00"
+            "time": "2023-10-17T06:17:18+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -10249,7 +10249,8 @@
     "platform": {
         "php": ">=8.2",
         "ext-ctype": "*",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-intl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
