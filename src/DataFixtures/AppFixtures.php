@@ -176,6 +176,7 @@ class AppFixtures extends Fixture
             ->setPassword($this->passwordHasher->hashPassword($customer, 'MyFabulousPassword7!'))
             ->setRoles(["ROLE_CLIENT"])
         ;
+        $manager->persist($customer);
 
         /** Service 1 */
         $image1 = new ImageService();
