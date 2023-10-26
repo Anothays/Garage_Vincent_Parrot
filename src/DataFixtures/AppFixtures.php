@@ -9,6 +9,7 @@ use App\Entity\ImageService;
 use App\Entity\Schedule;
 use App\Entity\Service;
 use App\Entity\User;
+use App\Entity\UserCustomer;
 use App\Entity\UserStaffMember;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -150,7 +151,7 @@ class AppFixtures extends Fixture
         $manager->persist($admin);
 
         /**
-         * Création d'un employé
+         * Création d'un comtpe employé
          */
         $employee = new UserStaffMember();
         $employee
@@ -162,6 +163,19 @@ class AppFixtures extends Fixture
             ->setRoles(["ROLE_ADMIN"])
         ;
         $manager->persist($employee);
+
+        /**
+         * Création d'un compte client
+         */
+        $customer = new UserCustomer();
+        $customer
+            ->setFirstname('Cloud')
+            ->setLastname('Strife')
+            ->setEmail('cloud.strife@gmail.com')
+            ->setIsVerified(true)
+            ->setPassword($this->passwordHasher->hashPassword($customer, 'MyFabulousPassword7!'))
+            ->setRoles(["ROLE_CLIENT"])
+        ;
 
         /** Service 1 */
         $image1 = new ImageService();
