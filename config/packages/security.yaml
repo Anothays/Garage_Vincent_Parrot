@@ -64,7 +64,7 @@ when@test:
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
 
-when@prod:
-    security:
-        access_control:
-            - { path: '^/', requires_channel: https }
+#when@prod:
+#    security:
+#        access_control:
+#            - { path: '^/', requires_channel: https }
