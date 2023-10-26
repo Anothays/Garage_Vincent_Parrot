@@ -45,8 +45,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         #- { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+#        - { path: ^/, requires_channel: '%env(REQUIRED_SCHEME)%' }
+#        - { path: ^/admin, roles: ROLE_ADMIN, requires_channel: '%env(REQUIRED_SCHEME)%' }
+#        - { path: ^/profile, roles: ROLE_USER }
     role_hierarchy:
         ROLE_CLIENT: ROLE_CLIENT
         ROLE_ADMIN: ROLE_USER
@@ -63,8 +64,3 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
-
-#when@prod:
-#    security:
-#        access_control:
-#            - { path: '^/', requires_channel: https }
