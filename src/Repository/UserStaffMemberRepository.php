@@ -47,4 +47,12 @@ class UserStaffMemberRepository extends ServiceEntityRepository
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+
+    public function findByRole(?string $role)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :val')
+            ->setParameter('val', '%' . $role . '%');
+        return $query->getQuery()->getResult();
+    }
 }

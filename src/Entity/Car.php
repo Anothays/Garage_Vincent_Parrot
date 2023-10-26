@@ -13,9 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[
+        ORM\Id,
+        ORM\GeneratedValue,
+        ORM\Column
+    ]
     private ?int $id = null;
 
     #[ORM\Column(length: 9, unique: true)]

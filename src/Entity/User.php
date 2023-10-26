@@ -40,6 +40,14 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column(length: 60)]
+    #[
+        Assert\Regex(
+        pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/",
+        message: 'Le mot de passe doit contenir au minimum 12 caractères dont une minuscule, 
+        une majuscule, un chiffre, un caractère spéciale',
+        ),
+        Assert\NotBlank(['message' => 'Le mot de passe de peut pas être vide'])
+    ]
     private ?string $password = null;
 
 //    #[ORM\OneToMany(mappedBy: 'approvedBy', targetEntity: TestimonialApproved::class)]

@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: UserStaffMemberRepository::class)]
 class UserStaffMember extends User
 {
+
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Garage $garage = null;
 

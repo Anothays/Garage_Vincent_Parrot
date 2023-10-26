@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ImageCarRepository;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ImageCarRepository::class)]
@@ -23,4 +24,5 @@ class ImageCar extends Image
 
         return $this;
     }
+
 }

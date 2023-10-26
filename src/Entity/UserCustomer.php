@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: UserCustomerRepository::class)]
 class UserCustomer extends User
 {
+
     #[ORM\Column]
     private ?bool $isVerified = false;
 
@@ -22,4 +23,5 @@ class UserCustomer extends User
 
         return $this;
     }
+
 }
