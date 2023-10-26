@@ -69,7 +69,7 @@ class TestimonialsCrudController extends AbstractCrudController
         yield AssociationField::new('approval', 'Approuvé par')
             ->onlyOnDetail()
         ;
-        yield TextField::new('createdBy', 'créé par');
+        yield TextField::new('createdBy', 'créé par')->hideOnForm();
     }
 
     public function configureActions(Actions $actions): Actions

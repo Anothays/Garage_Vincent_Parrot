@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\UserCustomer;
 use App\Form\RegistrationFormType;
 use App\Form\VerifyEmailAccountType;
+use App\Repository\GarageRepository;
 use App\Repository\UserCustomerRepository;
-use App\Repository\UserRepository;
+use App\Repository\UserStaffMemberRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -23,6 +23,8 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 class RegistrationController extends AbstractController
 {
+    public function __construct(private UserStaffMemberRepository $staffMemberRepository){}
+
     #[Route('/register', name: 'app_register')]
     public function register(MailerInterface $mailer, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, VerifyEmailHelperInterface $verifyEmailHelper): Response
     {
@@ -36,7 +38,8 @@ class RegistrationController extends AbstractController
             try {
                 $user->setRoles(["ROLE_CLIENT"]);
                 // Hash du mot de passe
-                $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData()));
+                $pw = $form->get('password')->getData();
+                $user->setPassword($userPasswordHasher->hashPassword($user, $pw));
                 // Persit en BDD
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -50,7 +53,10 @@ class RegistrationController extends AbstractController
             } catch (\Exception $e) {
                 // Transaction échouée
                 $entityManager->rollback();
-                $this->addFlash('error', "Une erreur est survenue pendant le processus d'inscription. " . $e->getMessage());
+                $this->addFlash(
+                    'error',
+                    "Une erreur est survenue pendant l'inscription. " . $e->getMessage()
+                );
             }
         }
         return $this->render('registration/register.html.twig', [
@@ -60,7 +66,12 @@ class RegistrationController extends AbstractController
 
     // Route appelée en cliquant sur le lien du mail de validation
     #[Route('/verify', name: 'app_registration_verify_email')]
-    public function verifyEmail(Request $request, VerifyEmailHelperInterface $verifyEmailHelper, UserCustomerRepository $userRepository, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator) : Response
+    public function verifyEmail(
+        Request $request,
+        VerifyEmailHelperInterface $verifyEmailHelper,
+        UserCustomerRepository $userRepository,
+        UserAuthenticatorInterface $userAuthenticator,
+        AppAuthenticator $authenticator) : Response
     {
         $user = $userRepository->find($request->query->get('1'));
         if (!$user) {
@@ -113,7 +124,11 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    public function makeAndSendEmail(VerifyEmailHelperInterface $verifyEmailHelper, MailerInterface $mailer, UserCustomer $user)
+    public function makeAndSendEmail(
+        VerifyEmailHelperInterface $verifyEmailHelper,
+        MailerInterface $mailer,
+        UserCustomer $user,
+    )
     {
         $signedURL = $verifyEmailHelper->generateSignature(
             'app_registration_verify_email',
@@ -121,11 +136,13 @@ class RegistrationController extends AbstractController
             $user->getEmail(),
             ['id', $user->getId()]
         );
+
+        $from = $this->staffMemberRepository->findByRole("ROLE_SUPER_ADMIN")[0]->getEmail();
         $email = (new TemplatedEmail())
-            ->from($_ENV['CONTACT_EMAIL'])
+            ->from($from)
             ->to($user->getEmail())
             ->subject('Garage Vincent Parrot : email de validation de compte')
-            ->htmlTemplate('email/email_verify_registration.html.twig')
+            ->htmlTemplate('email/email_verify.html.twig')
             ->context([
                 'url' => $signedURL->getSignedUrl(),
                 'firstname' => $user->getFirstname(),

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Entity\ContactMessage;
-use App\Entity\Testimonial;
 use App\Form\ContactMessageType;
 use App\Repository\CarRepository;
 use App\Repository\ContactMessageRepository;

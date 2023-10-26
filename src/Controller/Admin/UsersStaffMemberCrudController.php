@@ -91,32 +91,35 @@ class UsersStaffMemberCrudController extends AbstractCrudController
         ;
         $fields[] = $passwordFieldCreate;
 
-        $roleField = ChoiceField::new('roles', 'Rôles attribués')
-            ->setPermission('ROLE_SUPER_ADMIN')
-            ->hideOnIndex()
-            ->allowMultipleChoices()
-            ->setChoices([
-                'Administrateur' => 'ROLE_ADMIN',
-                'Utilisateur' => 'ROLE_USER'
-            ])
-            ->renderExpanded()
-        ;
+//        $roleField = ChoiceField::new('roles', 'Rôles attribués')
+//            ->setPermission('ROLE_SUPER_ADMIN')
+//            ->hideOnIndex()
+//            ->allowMultipleChoices()
+//            ->setChoices([
+//                'Administrateur' => 'ROLE_ADMIN',
+//                'Utilisateur' => 'ROLE_USER'
+//            ])
+//            ->renderExpanded()
+//        ;
 
         // L'utilisateur actuellement connecté ne peut pas changer son propre rôle
-        if (strval($this->getUser()->getId()) === $this->requestStack->getCurrentRequest()->query->get("entityId")) {
-            $roleField->hideOnForm();
-        }
+//        if (strval($this->getUser()->getId()) === $this->requestStack->getCurrentRequest()->query->get("entityId")) {
+//            $roleField->hideOnForm();
+//        }
 
-        $fields[] = $roleField;
+//        $fields[] = $roleField;
 
         return $fields;
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
+        $entityInstance->setRoles(["ROLE_ADMIN"]);
+
         /** @var UserStaffMember $entityInstance */
         $entityInstance->setPassword($this->userPasswordHasher->hashPassword($entityInstance, $entityInstance->getPassword()));
         parent::persistEntity($entityManager, $entityInstance);
+
     }
 
     public function changePassword(Request $request, UserStaffMemberRepository $userRepository): Response
@@ -141,5 +144,6 @@ class UsersStaffMemberCrudController extends AbstractCrudController
         ]);
 
     }
+
 
 }
