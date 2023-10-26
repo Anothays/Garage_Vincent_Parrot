@@ -7,9 +7,10 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-intl": "*",
         "doctrine/doctrine-bundle": "^2.10",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
         "easycorp/easyadmin-bundle": "^4.7",
         "fakerphp/faker": "^1.23",
@@ -44,10 +45,9 @@
         "symfony/web-link": "6.4.*",
         "symfony/yaml": "6.4.*",
         "symfonycasts/verify-email-bundle": "1.11.0",
+        "twig/cssinliner-extra": "^3.7",
         "twig/extra-bundle": "^3.7",
-        "twig/inky-extra": "^3.7",
-        "twig/twig": "^2.12|^3.0",
-        "ext-intl": "*"
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {

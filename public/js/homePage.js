@@ -33,13 +33,13 @@ function initBtn() {
             const modalBody = document.querySelector('#testimonialsModal .modal-body')
             modalBody.innerHTML = '<div class="text-center vh-100"><div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div></div>'
             const url = new URL(document.location.href)
-            url.searchParams.append('ajax', '1')
+            // url.searchParams.append('ajax', '1')
             url.searchParams.append('page', '1')
-            // console.log(url)
+
             fetch(url, {headers: {"X-Requested-With": "XMLHttpRequest"}})
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+
                     const ul = document.createElement('ul')
                     ul.className = "m-0 p-0 text-center"
                     ul.id = 'testimonials-list'

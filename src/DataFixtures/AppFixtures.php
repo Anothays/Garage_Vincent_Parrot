@@ -149,6 +149,20 @@ class AppFixtures extends Fixture
         ;
         $manager->persist($admin);
 
+        /**
+         * Création d'un employé
+         */
+        $employee = new UserStaffMember();
+        $employee
+            ->setFirstname('John')
+            ->setLastname('Doe')
+            ->setGarage($garage)
+            ->setEmail('johnDoe@VP.com')
+            ->setPassword($this->passwordHasher->hashPassword($employee, 'MyFabulousPassword7!'))
+            ->setRoles(["ROLE_ADMIN"])
+        ;
+        $manager->persist($employee);
+
         /** Service 1 */
         $image1 = new ImageService();
         $image1
@@ -161,7 +175,6 @@ class AppFixtures extends Fixture
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image1);
-//            ->setImageService($image1);
         copy("src/DataFixtures/images/services/Entretien et vidange.webp", "public/media/uploads/{$image1->getFilename()}");
         $manager->persist($service1);
 
@@ -177,7 +190,6 @@ class AppFixtures extends Fixture
             ->setPrice(90)
             ->setPublished(true)
             ->addImageService($image2);
-//            ->setImageService($image2);
         copy("src/DataFixtures/images/services/Revision.webp", "public/media/uploads/{$image2->getFilename()}");
         $manager->persist($service2);
 
@@ -193,7 +205,6 @@ class AppFixtures extends Fixture
             ->setPrice(499)
             ->setPublished(true)
             ->addImageService($image3);
-//            ->setImageService($image3);
         copy("src/DataFixtures/images/services/Courroie.webp", "public/media/uploads/{$image3->getFilename()}");
         $manager->persist($service3);
 
@@ -209,7 +220,6 @@ class AppFixtures extends Fixture
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image4);
-//            ->setImageService($image4);
         copy("src/DataFixtures/images/services/Pneumatique.webp", "public/media/uploads/{$image4->getFilename()}");
         $manager->persist($service4);
 
@@ -225,7 +235,6 @@ class AppFixtures extends Fixture
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image5);
-//            ->setImageService($image5);
         copy("src/DataFixtures/images/services/Plaquettes de frein.webp", "public/media/uploads/{$image5->getFilename()}");
         $manager->persist($service5);
 

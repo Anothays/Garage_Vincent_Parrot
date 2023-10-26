@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+{#    {{ dump(service) }}#}
+    <div class="container">
+        <h1 class="text-center p-5">{{ service.name }}</h1>
+        <div class="float-end">
+            <img class="" src="{{ asset('media/uploads/' ~ service.imageServices[0].filename) }}" style="width: 300px;">
+        </div>
+        <div>
+            <p>{{ service.description }}</p>
+            <p class="">{{ service.price }} €</p>
+        </div>
+    </div>
+{% endblock %}
+

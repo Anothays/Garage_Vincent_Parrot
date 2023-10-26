@@ -31,20 +31,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'label' => 'Mot de passe',
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe valide',
-                    ]),
-                    new Regex([
-                        'pattern' => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,4096}$/",
-                        'message' => 'Le mot de passe doit contenir au minimum 12 caractères dont une minuscule, une majuscule, un chiffre, un caractère spéciale',
-                    ]),
+            ->add('password', PasswordType::class, [
+                'label' => 'Mot de passe (au moins 12 caractères avec 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spéciale)',
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'pattern' => "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$",
+                    'title' => "Au moins 12 caractères dont une minuscule, une majuscule, un chiffre, un caractère spéciale"
                 ],
             ])
         ;
