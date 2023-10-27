@@ -9,6 +9,7 @@ use App\Repository\GarageRepository;
 use App\Repository\UserCustomerRepository;
 use App\Repository\UserStaffMemberRepository;
 use App\Security\AppAuthenticator;
+use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +24,7 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function __construct(private UserStaffMemberRepository $staffMemberRepository){}
+    public function __construct(private UserStaffMemberRepository $staffMemberRepository, private MailerService $mailerService){}
 
     #[Route('/register', name: 'app_register')]
     public function register(MailerInterface $mailer, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, VerifyEmailHelperInterface $verifyEmailHelper): Response
@@ -44,7 +45,10 @@ class RegistrationController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
                 // Envoi confirmation email
-                $this->makeAndSendEmail($verifyEmailHelper, $mailer, $user);
+                $from = $this->staffMemberRepository->findByRole("ROLE_SUPER_ADMIN")[0]->getEmail();
+                $subject = 'Garage Vincent Parrot : validation du compte';
+                $htmlTemplate = 'email/email_verify.html.twig';
+                $this->mailerService->makeAndSendEmail($user, 'app_registration_verify_email', $from, $subject, $htmlTemplate);
                 // Transaction réussie
                 $entityManager->commit();
                 return $this->redirectToRoute('app_verify_send_email', [
@@ -73,7 +77,7 @@ class RegistrationController extends AbstractController
         UserAuthenticatorInterface $userAuthenticator,
         AppAuthenticator $authenticator) : Response
     {
-        $user = $userRepository->find($request->query->get('1'));
+        $user = $userRepository->find($request->query->get('id'));
         if (!$user) {
             throw $this->createNotFoundException();
         }
@@ -93,11 +97,8 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Compte vérifié ! Vous êtes maintenant inscrit !');
 
         // Authenticate user
-        $userAuthenticator->authenticateUser(
-            $user,
-            $authenticator,
-            $request
-        );
+        $userAuthenticator->authenticateUser($user, $authenticator, $request);
+
         return $this->redirectToRoute('app_home_index');
     }
 
@@ -124,29 +125,25 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    public function makeAndSendEmail(
-        VerifyEmailHelperInterface $verifyEmailHelper,
-        MailerInterface $mailer,
-        UserCustomer $user,
-    )
-    {
-        $signedURL = $verifyEmailHelper->generateSignature(
-            'app_registration_verify_email',
-            $user->getId(),
-            $user->getEmail(),
-            ['id', $user->getId()]
-        );
-
-        $from = $this->staffMemberRepository->findByRole("ROLE_SUPER_ADMIN")[0]->getEmail();
-        $email = (new TemplatedEmail())
-            ->from($from)
-            ->to($user->getEmail())
-            ->subject('Garage Vincent Parrot : email de validation de compte')
-            ->htmlTemplate('email/email_verify.html.twig')
-            ->context([
-                'url' => $signedURL->getSignedUrl(),
-                'firstname' => $user->getFirstname(),
-            ]);
-        $mailer->send($email);
-    }
+//    public function makeAndSendEmail(VerifyEmailHelperInterface $verifyEmailHelper, MailerInterface $mailer, UserCustomer $user,)
+//    {
+//        $signedURL = $verifyEmailHelper->generateSignature(
+//            'app_registration_verify_email',
+//            $user->getId(),
+//            $user->getEmail(),
+//            ['id', $user->getId()]
+//        );
+//
+//        $from = $this->staffMemberRepository->findByRole("ROLE_SUPER_ADMIN")[0]->getEmail();
+//        $email = (new TemplatedEmail())
+//            ->from($from)
+//            ->to($user->getEmail())
+//            ->subject('Garage Vincent Parrot : email de validation de compte')
+//            ->htmlTemplate('email/email_verify.html.twig')
+//            ->context([
+//                'url' => $signedURL->getSignedUrl(),
+//                'firstname' => $user->getFirstname(),
+//            ]);
+//        $mailer->send($email);
+//    }
 }

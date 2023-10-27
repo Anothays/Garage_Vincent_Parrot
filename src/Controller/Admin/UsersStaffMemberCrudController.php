@@ -129,7 +129,7 @@ class UsersStaffMemberCrudController extends AbstractCrudController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $currentUser = $this->getUser();
-            $pw = $this->userPasswordHasher->hashPassword($currentUser, $form->getData()->getPassword());
+            $pw = $this->userPasswordHasher->hashPassword($currentUser, $form->getData()['password']);
             $userRepository->upgradePassword($currentUser, $pw);
             $this->addFlash('success','Votre mot de passe a bien été changé');
 
