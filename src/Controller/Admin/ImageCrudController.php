@@ -49,16 +49,13 @@ class ImageCrudController extends AbstractCrudController
             yield ImageField::new('filename', 'Image')
                 ->setUploadDir('public/media/uploads')
                 ->setBasePath('/media/uploads')
-                ->setUploadedFileNamePattern('[name]-[[year]_[month]_[day]]-[timestamp].[extension]')
+                ->setUploadedFileNamePattern('[name]-[[randomhash]].[extension]')
                 ->setFormType(FileUploadType::class)
                 ->setFormTypeOptions([
                     'constraints' => [
                         new EasyAdminFile([
-                            'mimeTypes' => [
-                                'image/jpeg',
-                                'image/png',
-                            ],
-                            'mimeTypesMessage' => 'Le fichier doit être au format jpeg ou png.',
+                            'mimeTypes' => ['image/jpeg', 'image/png'],
+                            'mimeTypesMessage' => 'Le fichier doit être au format jpeg ou png',
                             'maxSize' => 2000000, // 2 Mb
                             'maxSizeMessage' => 'Le fichier ne peut pas excéder 2 Mb',
                             'uploadIniSizeErrorMessage' => 'uploadIniSizeErrorMessage',

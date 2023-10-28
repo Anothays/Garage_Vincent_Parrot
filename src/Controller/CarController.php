@@ -18,22 +18,22 @@ class CarController extends AbstractController
 {
 
     #[Route('/', name: 'app_cars_index', methods: ['GET', 'POST'])]
-    public function index(CarRepository $carsRepository, Request $request, ContactMessageRepository $contactMessageRepository): Response
+    public function index(
+        CarRepository $carsRepository,
+        Request $request,
+        ContactMessageRepository $contactMessageRepository): Response
     {
-        // Création du formulaire
+        // Create form
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contactMessage);
         $form->handleRequest($request);
-
-        // Récupération des valeurs minimum et maximum pour mileage, price, registrationYear
+        // Get min and max values in database for mileage, price, registrationYear
         $MinMaxValues = $carsRepository->getMinMaxValues();
-
-        // Gestion des filtres avec ajax
-        if ($request->get('ajax') === "1") {
+        // handle ajax filters
+        if ($request->headers->get('X-Requested-With') === "XMLHttpRequest") {
             return $this->handleAjaxFilters($request, $carsRepository, $MinMaxValues);
         }
-
-        // Gestion soumission du formulaire de contact
+        // Handle submit form with ajax
         if ($form->isSubmitted() && $form->isValid()) {
             $contactMessageRepository->saveAndUpdateAssociatedCar($contactMessage, $carsRepository);
             return $this->json([

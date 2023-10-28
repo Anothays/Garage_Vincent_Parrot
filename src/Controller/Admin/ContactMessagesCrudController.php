@@ -24,7 +24,10 @@ class ContactMessagesCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string { return ContactMessage::class;}
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('fullname')->setLabel('Nom complet');
+        yield TextField::new('fullname')->setLabel('Nom complet')
+            ->formatValue(function ($value, $contactMessage) {
+                return !$contactMessage->isIsReadByStaff() ? "⚠️ {$value}" : $value;
+            });
         yield EmailField::new('email')->setLabel('Email');
         yield TelephoneField::new('phoneNumber')->setLabel('Téléphone');
         yield TextField::new('subject')->setLabel('Objet du message');

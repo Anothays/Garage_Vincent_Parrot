@@ -4,11 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Service;
 use App\Service\ImageService;
+use App\Validator\Constraints\EasyAdminFile;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
@@ -16,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints\Callback;
 
 
 class ServicesCrudController extends AbstractCrudController
@@ -42,6 +45,7 @@ class ServicesCrudController extends AbstractCrudController
             ->setBasePath("media/uploads")
             ->onlyOnIndex()
         ;
+
     }
 
     public function configureCrud(Crud $crud): Crud

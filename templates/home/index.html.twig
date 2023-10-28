@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block main %}
+
+    {#  welcome section  #}
     <section class="w-100 text-center">
         <h1 class="pt-5">Votre confiance, notre engagement !</h1>
         <p class="p-5 m-0">
@@ -22,6 +24,7 @@
         </p>
     </section>
 
+    {#  services section  #}
     <section id="prestations" class="w-100 pb-5 px-lg-5 text-center bg-primary-subtle">
         <h2 class="text-center pt-5">Nos prestations</h2>
         <p class="p-5">
@@ -35,11 +38,16 @@
         {% include 'home/services_list.html.twig' %}
     </section>
 
-
+    {#  testimonials section  #}
     <section id="testimonials" class=" pb-5 px-lg-5 text-center">
         <h2 class="text-center p-5">Nos clients nous recommandent (ou pas...)</h2>
         {% include 'home/testimonials_list.html.twig' %}
-        <button class="btn btn-outline-success rounded-5 mt-3" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ajouter un avis</button>
+        <button class="btn btn-outline-success rounded-5 mt-3"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+            Ajouter un avis
+        </button>
     </section>
 
     {# Modale contenant le formulaire #}
@@ -51,5 +59,6 @@
     {# Notification #}
     {% include 'notifications/toast.html.twig' %}
 
-
 {% endblock %}
+
+

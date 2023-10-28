@@ -100,23 +100,6 @@ class UsersStaffMemberCrudController extends AbstractCrudController
         ;
         $fields[] = $passwordFieldCreate;
 
-//        $roleField = ChoiceField::new('roles', 'Rôles attribués')
-//            ->setPermission('ROLE_SUPER_ADMIN')
-//            ->hideOnIndex()
-//            ->allowMultipleChoices()
-//            ->setChoices([
-//                'Administrateur' => 'ROLE_ADMIN',
-//                'Utilisateur' => 'ROLE_USER'
-//            ])
-//            ->renderExpanded()
-//        ;
-
-        // L'utilisateur actuellement connecté ne peut pas changer son propre rôle
-//        if (strval($this->getUser()->getId()) === $this->requestStack->getCurrentRequest()->query->get("entityId")) {
-//            $roleField->hideOnForm();
-//        }
-
-//        $fields[] = $roleField;
 
         return $fields;
     }

@@ -5,7 +5,6 @@ class FilterInputs {
         this.#setPagination()
         this.#setPaginationRange()
     }
-
     // fetch data from database
     #getData(url) {
         const paginator = document.getElementById('pagination-list')
@@ -26,7 +25,12 @@ class FilterInputs {
             paginator.innerHTML = data.pagination.content
             paginatorTitle.innerText = `${data.contentCount} annonce${data.contentCount > 1 ? 's' : ''} auto`
             if (data.contentCount === 0) {
-                carsListItems.innerHTML = "<div class='alert alert-info'><p class='text-info text-xl-center'>Aucun véhicule ne correspond à vos critères de recherche !</p></div>"
+                carsListItems.innerHTML =
+                    "<div class='alert alert-info'>" +
+                        "<p class='text-info text-xl-center'>" +
+                        "Aucun véhicule ne correspond à vos critères de recherche !" +
+                        "</p>" +
+                    "</div>"
             } else {
                 carsListItems.innerHTML = data.content.content
                 // On pré-remplie le formulaire avec la référence de l'annonce
@@ -36,13 +40,11 @@ class FilterInputs {
         })
         .catch(error => {
             carsListItems.innerHTML = "<div class='alert alert-danger'><p class='text-danger-emphasis text-xl-center'>Erreur de chargement</p></div>"
-            console.log(error)
         })
         .finally(_ => {
             mainSection.style.opacity = '1'
         })
     }
-
     // init reset button filters
     #initResetFiltersButton() {
         const resetButton = document.getElementById('filters-btn-reset')
@@ -55,7 +57,6 @@ class FilterInputs {
             this.#getData(url)
         })
     }
-
     // init ajax filters
     #initFiltersInput() {
         const filtersInput = document.querySelectorAll("#filters-form input")
@@ -108,7 +109,6 @@ class FilterInputs {
             })
         })
     }
-
     // Handle pagination list with ajax
     #setPagination() {
         const paginationlinks = document.querySelectorAll('#pagination-list a')
@@ -128,7 +128,6 @@ class FilterInputs {
             })
         })
     }
-
     // Handle pagination range with ajax
     #setPaginationRange() {
         const selectPagination = document.getElementById('pagination-select')
@@ -144,3 +143,4 @@ class FilterInputs {
         }.bind(this))
     }
 }
+

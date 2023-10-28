@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     initPage()
 })
-
 function initPage() {
     initBtn()
     const notification = new NotificationToast('liveToast')
@@ -25,7 +24,6 @@ function initPage() {
         .catch(error => console.log(error))
     })
 }
-
 function initBtn() {
     const testimonialsModalToggleBtn = document.getElementById('toggleTestimonials')
     if (testimonialsModalToggleBtn) {
@@ -57,7 +55,6 @@ function initBtn() {
 
     }
 }
-
 function initLinks(a) {
     a.addEventListener('click', function (e) {
         e.preventDefault()
@@ -84,7 +81,6 @@ function initLinks(a) {
         .catch(error => console.log(error))
     })
 }
-
 function createPagination(pages, url) {
     const nav = document.createElement('nav')
     nav.id = "pagination"
@@ -107,7 +103,6 @@ function createPagination(pages, url) {
     nav.appendChild(ol)
     return nav
 }
-
 function createBootstrapCard(testimonial) {
     const li = document.createElement('li')
     li.className = "card rounded-3 bg-success-subtle m-4 "
@@ -146,3 +141,5 @@ function createBootstrapCard(testimonial) {
 
     return li
 }
+
+

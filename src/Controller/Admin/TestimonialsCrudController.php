@@ -38,7 +38,11 @@ class TestimonialsCrudController extends AbstractCrudController
     }
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('author')->setLabel('Pseudo');
+        yield TextField::new('author')->setLabel('Pseudo')
+            ->formatValue(function ($value, $message) {
+                return !$message->isIsReadByStaff() ? "⚠️ {$value}" : $value;
+            });
+        ;
         yield ChoiceField::new('note')->setLabel('note')->setChoices(['1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5,]);
         yield TextField::new('comment')->setLabel('Commentaire')->setSortable(false);
         yield DateTimeField::new('modifiedAt', 'Modifié le')

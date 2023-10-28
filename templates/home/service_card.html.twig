@@ -2,7 +2,9 @@
     <div class="card-header card-img-top rounded-top-3 p-0">
         <a href="{{ path('app_service_show', {id: service.id}) }}">
             <h3 class="text-white z-1 position-absolute w-100" style="top: 45px;">{{ service.name }}</h3>
+            {% if service.getImageServices is not empty %}
             <img style="width: 100%; height: 150px; filter: brightness(80%);" class="d-block w-100 p-0 rounded-top-3 object-fit-cover"   alt="{{ service.name }}" src="{{ asset("media/uploads/" ~ service.getImageServices[0].filename) }}">
+            {% endif %}
         </a>
     </div>
     <div class="h3 mt-2">

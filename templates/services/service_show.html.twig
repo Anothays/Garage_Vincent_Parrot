@@ -5,7 +5,9 @@
     <div class="container">
         <h1 class="text-center p-5">{{ service.name }}</h1>
         <div class="float-end">
+            {% if service.getImageServices is not empty %}
             <img class="" src="{{ asset('media/uploads/' ~ service.imageServices[0].filename) }}" style="width: 300px;">
+            {% endif %}
         </div>
         <div>
             <p>{{ service.description }}</p>

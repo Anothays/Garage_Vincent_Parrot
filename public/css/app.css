@@ -3,9 +3,7 @@ body {
   margin: 0;
 }
 
-.contactForm {
-  width: 90%;
-}
+
 
 .card-header:hover img {
   opacity: 50%;
@@ -13,14 +11,25 @@ body {
   transition: 0.2s;
 }
 
-
-@media screen and (min-width: 500px) {
+.contactForm {
+  width: 95%;
+}
+@media screen and (min-width: 768px) {
   .contactForm {
-    width: 75%;
+    width: 80%;
   }
 }
-
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 992px) {
+  .contactForm {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .contactForm {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1400px) {
   .contactForm {
     width: 50%;
   }
