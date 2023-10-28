@@ -1,17 +1,13 @@
-{#{{ dump() }}#}
+{% if field.value is not empty %}
 
-
-
- {% if field.value is not empty %}
-
-        {% set candidateDetailUrl = ea_url()
-            .setController('App\\Controller\\Admin\\CarsCrudController')
-            .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
-            .setEntityId(field.value.car.id)
-        %}
-        <a href="{{ candidateDetailUrl }}" style="display: block">
-            {{ field.value }}
-        </a>
+    {% set candidateDetailUrl = ea_url()
+        .setController('App\\Controller\\Admin\\CarsCrudController')
+        .setAction(constant('EasyCorp\\Bundle\\EasyAdminBundle\\Config\\Action::DETAIL'))
+        .setEntityId(field.value.car.id)
+    %}
+    <a href="{{ candidateDetailUrl }}" style="display: block">
+        {{ field.value }}
+    </a>
 
 {% else %}
     No candidates

@@ -57,7 +57,16 @@ class UsersStaffMemberCrudController extends AbstractCrudController
                 Action::NEW => 'ROLE_SUPER_ADMIN',
             ])
             ->add( Crud::PAGE_INDEX,Action::DETAIL)
-        ;
+            ->update(Crud::PAGE_INDEX, Action::NEW, fn ($action) => $action->setLabel('Ajouter un nouveau membre'))
+            ->update(Crud::PAGE_INDEX, Action::DETAIL, fn ($action) => $action->setLabel('Voir'))
+            ->update(Crud::PAGE_INDEX, Action::EDIT, fn ($action) => $action->setLabel('Modifier'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn ($action) => $action->setLabel('Supprimer'))
+            ->update(Crud::PAGE_DETAIL, Action::DELETE, fn ($action) => $action->setLabel('Supprimer'))
+            ->update(Crud::PAGE_DETAIL, Action::INDEX, fn ($action) => $action->setLabel('Retour'))
+            ->update(Crud::PAGE_DETAIL, Action::EDIT, fn ($action) => $action->setLabel('Modifier'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, fn ($action) => $action->setLabel('Valider et continuer'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, fn ($action) => $action->setLabel('Valider'))
+            ;
     }
 
     public function configureFields(string $pageName): iterable

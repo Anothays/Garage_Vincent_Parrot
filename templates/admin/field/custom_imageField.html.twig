@@ -2,7 +2,6 @@
 {# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
 {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
 {% set images = field.formattedValue %}
-
 {% if images is not iterable %}
     {% set images = [images] %}
 {% endif %}

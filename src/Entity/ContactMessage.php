@@ -44,6 +44,9 @@ class ContactMessage
     #[ORM\Column(length: 180)]
     private ?string $createdBy = 'visiteur anonyme';
 
+    #[ORM\Column]
+    private ?bool $isReadByStaff = false;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -185,6 +188,18 @@ class ContactMessage
     public function setCreatedBy(string $createdBy): static
     {
         $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function isIsReadByStaff(): ?bool
+    {
+        return $this->isReadByStaff;
+    }
+
+    public function setIsReadByStaff(bool $isReadByStaff): static
+    {
+        $this->isReadByStaff = $isReadByStaff;
 
         return $this;
     }

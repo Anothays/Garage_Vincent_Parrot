@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Car;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -12,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -25,15 +28,7 @@ use function Symfony\Component\String\u;
 
 class CarsCrudController extends AbstractCrudController
 {
-    public function __construct(
-        private ParameterBagInterface $parameterBag,
-    ){}
-
-    public static function getEntityFqcn(): string
-    {
-        return Car::class;
-    }
-
+    public static function getEntityFqcn(): string{ return Car::class;}
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -45,29 +40,40 @@ class CarsCrudController extends AbstractCrudController
             ->setDateIntervalFormat('%%y Year(s) %%m Month(s) %%d Day(s)')
             ;
     }
-
-    public function configureAssets(Assets $assets): Assets
+    public function configureActions(Actions $actions): Actions
     {
-        return parent::configureAssets($assets);
+        return parent::configureActions($actions)
+            ->update(Crud::PAGE_INDEX, Action::NEW, fn ($action) => $action->setLabel('Ajouter un véhicule'))
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, fn ($action) => $action->setLabel('Valider'))
+            ->update(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER, fn ($action) => $action->setLabel('Valider et ajouter un nouveau véhicule'))
+            ->update(Crud::PAGE_INDEX, Action::EDIT, fn ($action) => $action->setLabel('Modifier'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn ($action) => $action->setLabel('Supprimer'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE, fn ($action) => $action->setLabel('Valider et continuer'))
+            ->update(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN, fn ($action) => $action->setLabel('Valider'))
+            ;
     }
     public function configureFields(string $pageName): iterable
     {
+        yield FormField::addTab('Caractéristiques');
             yield TextField::new('carConstructor', 'Marque');
             yield TextField::new('carModel', 'Modèle');
-            yield TextField::new('licensePlate', 'Plaque')->formatValue(function ($value){return strtoupper($value);});
+            yield TextField::new('licensePlate', 'Plaque')
+                ->formatValue(function ($value){return strtoupper($value);})
+            ;
             yield TextField::new('carEngine', 'Moteur');
             yield IntegerField::new('mileage', 'Kilométrage');
             yield NumberField::new('price', 'Prix');
             yield DateField::new('registrationDate', 'Date de mise en circulation');
-            yield AssociationField::new('contactMessages', "Demandes")->onlyOnIndex()->setSortable(false);
+            yield AssociationField::new('contactMessages', "Demandes")
+                ->onlyOnIndex()
+                ->setSortable(false)
+            ;
             yield AssociationField::new('garage', 'Lieu de stockage');
             yield ImageField::new('imageCars[0].filename', 'image')
                 ->setBasePath("/media/uploads")
-//                ->setTemplatePath('admin/custom_imageField.html.twig')
                 ->onlyOnIndex()
             ;
             yield BooleanField::new('published', 'Annonce visible');
-
             yield DateTimeField::new('createdAt', 'Crée le')
                 ->hideOnIndex()
                 ->hideWhenCreating()
@@ -84,24 +90,16 @@ class CarsCrudController extends AbstractCrudController
                     'disabled' => 'disabled'
                 ])
             ;
-            yield CollectionField::new('imageCars','photos du véhicule')
-                ->useEntryCrudForm(ImageCarCrudController::class)
-//                    ->setEntryType(ImageType::class)
-                ->renderExpanded()
-                ->onlyOnForms()
-            ;
-
+        yield FormField::addTab('Photos');
+        yield CollectionField::new('imageCars','photos du véhicule')
+            ->useEntryCrudForm(ImageCarCrudController::class)
+            ->renderExpanded()
+            ->onlyOnForms()
+            ->addJsFiles('js/easyAdminCollectionField.js')
+        ;
     }
-
-    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    {
-//        $this->createMediaFolder($entityInstance);
-        parent::persistEntity($entityManager, $entityInstance);
-    }
-
     public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-//        $this->removeMediaFolder($entityInstance);
         $images = [...$entityInstance->getImageCars()];
         foreach ($images as $image) {
             if (is_file("media/uploads/".$image->getFilename())) {
@@ -110,7 +108,6 @@ class CarsCrudController extends AbstractCrudController
         }
         parent::deleteEntity($entityManager, $entityInstance);
     }
-
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         /**
@@ -125,18 +122,6 @@ class CarsCrudController extends AbstractCrudController
         }
         parent::updateEntity($entityManager, $entityInstance);
     }
-
-//    public function createMediaFolder(Car $entityInstance): void
-//    {
-//        $licencePlate = strtoupper($entityInstance->getLicensePlate());
-//        mkdir("media/{$licencePlate}");
-//    }
-
-//    public function removeMediaFolder(Car $entityInstance): void
-//    {
-//        $licencePlate = strtoupper($entityInstance->getLicensePlate());
-//        rmdir("media/{$licencePlate}");
-//    }
     protected function processUploadedFiles(FormInterface $form): void
     {
         /** @var FormInterface $child */

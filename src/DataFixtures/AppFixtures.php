@@ -3,11 +3,13 @@
 namespace App\DataFixtures;
 
 use App\Entity\Car;
+use App\Entity\ContactMessage;
 use App\Entity\Garage;
 use App\Entity\ImageCar;
 use App\Entity\ImageService;
 use App\Entity\Schedule;
 use App\Entity\Service;
+use App\Entity\Testimonial;
 use App\Entity\User;
 use App\Entity\UserCustomer;
 use App\Entity\UserStaffMember;
@@ -186,7 +188,12 @@ class AppFixtures extends Fixture
         $service1 = new Service();
         $service1
             ->setName('Entretien et vidange')
-            ->setDescription($this->faker->text(300))
+            ->setDescription(
+                "Offrez à votre véhicule le soin qu'il mérite avec notre service d'entretien et de vidange de premier ordre. 
+                Notre équipe d'experts qualifiés veillera à ce que votre voiture reste en parfait état de marche. 
+                Nous utilisons les meilleures huiles et filtres pour garantir une performance optimale et une longévité accrue de votre moteur. 
+                Ne négligez pas l'entretien de votre précieux véhicule, confiez-le à des professionnels qui en prendront soin comme s'il était le leur."
+            )
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image1);
@@ -201,7 +208,13 @@ class AppFixtures extends Fixture
         $service2 = new Service();
         $service2
             ->setName('Révision')
-            ->setDescription($this->faker->text(300))
+            ->setDescription("
+            Votre sécurité sur la route est notre priorité numéro un, c'est pourquoi notre service de révision est conçu
+             pour vous offrir une tranquillité d'esprit totale. Nos mécaniciens certifiés inspecteront minutieusement 
+             chaque composant de votre véhicule, en effectuant les ajustements nécessaires et en remplaçant les pièces usées. 
+             Que vous prévoyiez un long voyage ou simplement que vous souhaitiez rouler en toute confiance au quotidien, 
+             notre service de révision vous assure que votre véhicule est en parfait état.
+            ")
             ->setPrice(90)
             ->setPublished(true)
             ->addImageService($image2);
@@ -216,7 +229,13 @@ class AppFixtures extends Fixture
         $service3 = new Service();
         $service3
             ->setName('Courroie de distribution')
-            ->setDescription($this->faker->text(300))
+            ->setDescription("
+            La courroie de distribution est l'un des éléments les plus critiques de votre moteur, et son remplacement à 
+            intervalles réguliers est essentiel pour éviter les pannes coûteuses. Laissez notre équipe de spécialistes 
+            prendre en charge cette tâche délicate. Nous utilisons uniquement des pièces de qualité supérieure pour garantir 
+            la fiabilité de votre véhicule. Avec notre service de changement de courroie de distribution, 
+            vous pouvez conduire l'esprit tranquille, en sachant que votre moteur est entre de bonnes mains.
+            ")
             ->setPrice(499)
             ->setPublished(true)
             ->addImageService($image3);
@@ -231,7 +250,12 @@ class AppFixtures extends Fixture
         $service4 = new Service();
         $service4
             ->setName('Pneumatiques')
-            ->setDescription($this->faker->text(300))
+            ->setDescription("
+            Les pneus sont la seule liaison entre votre véhicule et la route. Assurez-vous d'avoir les pneus adaptés à 
+            votre conduite et aux conditions routières. Chez nous, vous trouverez un large choix de pneumatiques de haute qualité, 
+            adaptés à tous les budgets. Nous vous offrons également un service de montage professionnel pour vous garantir une adhérence optimale, 
+            une tenue de route exceptionnelle et une durée de vie prolongée de vos pneus. Roulez en toute sécurité avec nos pneumatiques de qualité supérieure.
+            ")
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image4);
@@ -246,7 +270,13 @@ class AppFixtures extends Fixture
         $service5 = new Service();
         $service5
             ->setName('Freinage - disque et/ou plaquettes')
-            ->setDescription($this->faker->text(300))
+            ->setDescription("
+            La sécurité de votre véhicule dépend en grande partie de la performance de votre système de freinage. 
+            Notre service de freinage et de remplacement de disque de frein est conçu pour garantir un freinage efficace, 
+            sans compromis. Nos techniciens expérimentés utilisent uniquement des pièces de rechange de haute qualité 
+            pour assurer la réactivité de vos freins dans toutes les situations. Vous pouvez compter sur nous pour maintenir 
+            vos freins en parfait état, vous offrant une tranquillité d'esprit à chaque trajet.
+            ")
             ->setPrice(80)
             ->setPublished(true)
             ->addImageService($image5);
@@ -261,6 +291,32 @@ class AppFixtures extends Fixture
             ->addService($service5);
 
 
+        /**
+         * Création d'un message de contact
+         */
+        $contactMessage = new ContactMessage();
+        $contactMessage
+            ->setFirstname('Gervaise')
+            ->setLastname('Macquart')
+            ->setEmail('gervaise.macquart@wanadoo.fr')
+            ->setMessage("Bonjour, je souhaiterais savoir si vous proposez des véhicules pendant le temps de réparation ?")
+            ->setPhoneNumber('0645291499')
+            ->setTermsAccepted(true)
+            ->setSubject('Demande d\'informations')
+        ;
+        $manager->persist($contactMessage);
+
+        /**
+         * Création d'un témoignage
+         */
+        $avis1 = new Testimonial();
+        $avis1
+            ->setAuthor("Jean-Luc")
+            ->setComment("Toujours souriant et profesionnel. j'approuve !")
+            ->setNote(5)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis1);
 
         $manager->flush();
     }

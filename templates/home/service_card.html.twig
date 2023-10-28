@@ -1,4 +1,4 @@
-<li class="card bg-dark-subtle border-dark-subtle rounded-3 mb-5 mx-3" style="max-width: 250px; min-width: 250px; min-height: 440px;">
+<li class="card bg-dark-subtle border-dark-subtle rounded-3 mb-5 mx-3 " style="max-width: 250px; min-width: 250px; min-height: 440px; max-height: 500px">
     <div class="card-header card-img-top rounded-top-3 p-0">
         <a href="{{ path('app_service_show', {id: service.id}) }}">
             <h3 class="text-white z-1 position-absolute w-100" style="top: 45px;">{{ service.name }}</h3>
@@ -8,7 +8,9 @@
     <div class="h3 mt-2">
         <span class="">{{ service.price }} €</span>
     </div>
-    <div class="card-body h-auto carItem text-center rounded-bottom-3">
-        <p>{{ service.description }}</p>
+    <div class="card-body h-auto carItem text-center rounded-bottom-3 overflow-y-hidden">
+        <div class="">
+            <p class="text">{{ service.description }}</p>
+        </div>
     </div>
 </li>
