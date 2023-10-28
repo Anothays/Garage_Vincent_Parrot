@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
+use App\Service\ImageService;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -28,6 +29,9 @@ use function Symfony\Component\String\u;
 
 class CarsCrudController extends AbstractCrudController
 {
+
+    public function __construct( private ImageService $imageService){}
+
     public static function getEntityFqcn(): string{ return Car::class;}
     public function configureCrud(Crud $crud): Crud
     {
@@ -113,9 +117,7 @@ class CarsCrudController extends AbstractCrudController
         /**
          * Suppression des images si la mise à jour de l'entité l'impose
          */
-        $previousImages = [...$entityInstance->getImageCars()->getSnapshot()];
-        $currentImages = [...$entityInstance->getImageCars()];
-        foreach (array_diff($previousImages, $currentImages) as $image) {
+        foreach ($this->imageService->updateImages($entityInstance, 'getImageCars') as $image) {
             if (is_file("media/uploads/".$image->getFilename())) {
                 unlink("media/uploads/".$image->getFilename());
             }

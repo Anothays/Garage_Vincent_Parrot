@@ -4,12 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Image;
 use App\Validator\Constraints\EasyAdminFile;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\Form\FormInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -52,6 +50,7 @@ class ImageCrudController extends AbstractCrudController
                 ->setUploadDir('public/media/uploads')
                 ->setBasePath('/media/uploads')
                 ->setUploadedFileNamePattern('[name]-[[year]_[month]_[day]]-[timestamp].[extension]')
+                ->setFormType(FileUploadType::class)
                 ->setFormTypeOptions([
                     'constraints' => [
                         new EasyAdminFile([
@@ -60,6 +59,11 @@ class ImageCrudController extends AbstractCrudController
                                 'image/png',
                             ],
                             'mimeTypesMessage' => 'Le fichier doit être au format jpeg ou png.',
+                            'maxSize' => 2000000, // 2 Mb
+                            'maxSizeMessage' => 'Le fichier ne peut pas excéder 2 Mb',
+                            'uploadIniSizeErrorMessage' => 'uploadIniSizeErrorMessage',
+                            'uploadFormSizeErrorMessage' => 'uploadFormSizeErrorMessage',
+                            'uploadErrorMessage' => 'uploadErrorMessage'
                         ]),
                         new Callback([$this,'verifyAltWhenFilenameIsEmpty']),
                     ],
