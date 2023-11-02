@@ -39,7 +39,7 @@ CREATE TABLE `car` (
   UNIQUE KEY `UNIQ_773DE69DF5AA79D0` (`license_plate`),
   KEY `IDX_773DE69DC4FFF555` (`garage_id`),
   CONSTRAINT `FK_773DE69DC4FFF555` FOREIGN KEY (`garage_id`) REFERENCES `garage` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,21 +49,21 @@ CREATE TABLE `car` (
 LOCK TABLES `car` WRITE;
 /*!40000 ALTER TABLE `car` DISABLE KEYS */;
 INSERT INTO `car` VALUES
-(122,9,'hg-514-rz','1998-02-18 13:00:15',153998,40629,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hydrogene','208',1,'Peugeot'),
-(123,9,'of-577-ou','2001-07-11 13:30:09',106872,17576,'2023-10-28 19:45:21','2023-10-28 19:45:21','Diesel','308',1,'Peugeot'),
-(124,9,'xh-626-tr','2022-07-02 19:52:52',101271,34053,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hydrogene','3008',1,'Peugeot'),
-(125,9,'wi-411-fw','1999-02-24 23:05:01',198130,29364,'2023-10-28 19:45:21','2023-10-28 19:45:21','Diesel','Clio',1,'Renault'),
-(126,9,'bw-394-dy','2007-12-30 16:39:33',194363,31123,'2023-10-28 19:45:21','2023-10-28 19:45:21','Diesel','Megane',1,'Renault'),
-(127,9,'ns-932-vz','1998-11-06 21:12:12',162602,29271,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hybrid','Captur',1,'Renault'),
-(128,9,'fm-436-ky','2023-07-04 12:50:03',190467,44688,'2023-10-28 19:45:21','2023-10-28 19:45:21','Diesel','Sandero Stepway',1,'Dacia'),
-(129,9,'ij-867-ni','2000-01-26 19:26:45',25861,22676,'2023-10-28 19:45:21','2023-10-28 19:45:21','Electrique','Duster',1,'Dacia'),
-(130,9,'vd-288-hx','2010-09-15 11:46:26',103095,12902,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hybrid','Logan',1,'Dacia'),
-(131,9,'tb-320-xv','2019-09-04 23:02:11',99953,35060,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hydrogene','Picasso',1,'Citroën'),
-(132,9,'sd-202-pq','2009-06-02 09:30:50',197496,42144,'2023-10-28 19:45:21','2023-10-28 19:45:21','Essence','C3',1,'Citroën'),
-(133,9,'gu-144-sk','2023-06-29 07:35:41',2506,39658,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hybrid','C4',1,'Citroën'),
-(134,9,'na-142-cz','1997-06-10 11:01:10',153909,33608,'2023-10-28 19:45:21','2023-10-28 19:45:21','Electrique','Golf',1,'Volkswagen'),
-(135,9,'yc-654-ty','2006-06-14 14:33:15',137834,41312,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hybrid','Polo',1,'Volkswagen'),
-(136,9,'ks-618-os','2002-12-29 17:26:29',1601,20996,'2023-10-28 19:45:21','2023-10-28 19:45:21','Hybrid','Passat',1,'Volkswagen');
+(137,10,'og-626-qv','2019-06-30 00:11:52',12799,17802,'2023-11-02 16:20:37','2023-11-02 16:20:37','Hydrogene','208',1,'Peugeot'),
+(138,10,'ci-241-qn','1997-04-06 21:29:05',153289,19019,'2023-11-02 16:20:38','2023-11-02 16:20:38','Diesel','308',1,'Peugeot'),
+(139,10,'ts-236-lg','1996-10-21 12:32:09',117781,35141,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hydrogene','3008',1,'Peugeot'),
+(140,10,'nn-369-yk','2012-04-20 15:28:08',105553,12718,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hybrid','Clio',1,'Renault'),
+(141,10,'wv-312-xx','2006-12-30 10:45:37',157732,28227,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hydrogene','Megane',1,'Renault'),
+(142,10,'up-287-hs','2022-04-06 21:47:23',82173,34460,'2023-11-02 16:20:38','2023-11-02 16:20:38','Electrique','Captur',1,'Renault'),
+(143,10,'hq-415-pu','2014-12-25 06:06:57',47382,48918,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hydrogene','Sandero Stepway',1,'Dacia'),
+(144,10,'wz-212-ef','2021-09-27 22:15:59',165816,12303,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hydrogene','Duster',1,'Dacia'),
+(145,10,'rb-559-oh','2018-05-10 09:55:56',120801,27393,'2023-11-02 16:20:38','2023-11-02 16:20:38','Electrique','Logan',1,'Dacia'),
+(146,10,'sd-428-mp','2014-03-03 11:38:40',109296,22322,'2023-11-02 16:20:38','2023-11-02 16:20:38','Electrique','Picasso',1,'Citroën'),
+(147,10,'jz-702-ic','1999-03-28 11:47:38',35320,24311,'2023-11-02 16:20:38','2023-11-02 16:20:38','Essence','C3',1,'Citroën'),
+(148,10,'ku-961-np','2014-02-27 02:57:51',198940,43668,'2023-11-02 16:20:38','2023-11-02 16:20:38','Hybrid','C4',1,'Citroën'),
+(149,10,'id-357-qb','2001-01-06 22:27:34',24297,30624,'2023-11-02 16:20:38','2023-11-02 16:20:38','Diesel','Golf',1,'Volkswagen'),
+(150,10,'ax-173-mo','2000-05-20 14:36:28',172556,49245,'2023-11-02 16:20:38','2023-11-02 16:20:38','Electrique','Polo',1,'Volkswagen'),
+(151,10,'xs-569-we','1994-02-21 07:59:06',23599,39237,'2023-11-02 16:20:38','2023-11-02 16:20:38','Essence','Passat',1,'Volkswagen');
 /*!40000 ALTER TABLE `car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `contact_message` (
   `created_by` varchar(180) NOT NULL,
   `is_read_by_staff` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `contact_message` (
 LOCK TABLES `contact_message` WRITE;
 /*!40000 ALTER TABLE `contact_message` DISABLE KEYS */;
 INSERT INTO `contact_message` VALUES
-(6,'Gervaise','Macquart','gervaise.macquart@wanadoo.fr','0645291499','Demande d\'informations','Bonjour, je souhaiterais savoir si vous proposez des véhicules pendant le temps de réparation ?',1,'2023-10-28 19:45:22','visiteur anonyme',1);
+(7,'Gervaise','Macquart','gervaise.macquart@wanadoo.fr','0645291499','Demande d\'informations','Bonjour, je souhaiterais savoir si vous proposez des véhicules pendant le temps de réparation ?',1,'2023-11-02 16:20:39','visiteur anonyme',0);
 /*!40000 ALTER TABLE `contact_message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +144,7 @@ CREATE TABLE `garage` (
   PRIMARY KEY (`id`),
   KEY `IDX_9F26610BA40BC2D5` (`schedule_id`),
   CONSTRAINT `FK_9F26610BA40BC2D5` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `garage` (
 LOCK TABLES `garage` WRITE;
 /*!40000 ALTER TABLE `garage` DISABLE KEYS */;
 INSERT INTO `garage` VALUES
-(9,1,'Siege Social','7 avenue du vase de Soissons, 31000 Toulouse','0123456789','vincentParrot@VP.com');
+(10,1,'Siege Social','7 avenue du vase de Soissons, 31000 Toulouse','0123456789','vincentParrot@VP.com');
 /*!40000 ALTER TABLE `garage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `image_car` (
   PRIMARY KEY (`id`),
   KEY `IDX_2FD736CEC3C6F69F` (`car_id`),
   CONSTRAINT `FK_2FD736CEC3C6F69F` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=396 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,45 +183,45 @@ CREATE TABLE `image_car` (
 LOCK TABLES `image_car` WRITE;
 /*!40000 ALTER TABLE `image_car` DISABLE KEYS */;
 INSERT INTO `image_car` VALUES
-(318,122,'peugeot208-1.webp','peugeot208-1.webp'),
-(319,122,'peugeot208-2.webp','peugeot208-2.webp'),
-(320,122,'peugeot208-3.webp','peugeot208-3.webp'),
-(321,123,'peugeot308-1.webp','peugeot308-1.webp'),
-(322,123,'peugeot308-2.webp','peugeot308-2.webp'),
-(323,123,'peugeot308-3.webp','peugeot308-3.webp'),
-(324,124,'peugeot3008-1.webp','peugeot3008-1.webp'),
-(325,124,'peugeot3008-2.webp','peugeot3008-2.webp'),
-(326,124,'peugeot3008-3.webp','peugeot3008-3.webp'),
-(327,125,'RenaultClio-1.webp','RenaultClio-1.webp'),
-(328,125,'RenaultClio-2.webp','RenaultClio-2.webp'),
-(329,125,'RenaultClio-3.webp','RenaultClio-3.webp'),
-(330,126,'renaultMegane-1.webp','renaultMegane-1.webp'),
-(331,126,'renaultMegane-2.webp','renaultMegane-2.webp'),
-(332,127,'RenaultCaptur-1.webp','RenaultCaptur-1.webp'),
-(333,127,'RenaultCaptur-2.webp','RenaultCaptur-2.webp'),
-(334,128,'DaciaSanderoStepway-1.webp','DaciaSanderoStepway-1.webp'),
-(335,128,'DaciaSanderoStepway-2.webp','DaciaSanderoStepway-2.webp'),
-(336,128,'DaciaSanderoStepway-3.webp','DaciaSanderoStepway-3.webp'),
-(337,128,'DaciaSanderoStepway-4.webp','DaciaSanderoStepway-4.webp'),
-(338,129,'DaciaDuster-1.webp','DaciaDuster-1.webp'),
-(339,129,'DaciaDuster-2.webp','DaciaDuster-2.webp'),
-(340,129,'DaciaDuster-3.webp','DaciaDuster-3.webp'),
-(341,130,'DaciaLogan-1.webp','DaciaLogan-1.webp'),
-(342,131,'CitroënPicasso-1.jpg','CitroënPicasso-1.jpg'),
-(343,131,'CitroënPicasso-2.jpg','CitroënPicasso-2.jpg'),
-(344,132,'CItroënC3-2.jpg','CItroënC3-2.jpg'),
-(345,132,'CitroënC3-1.jpg','CitroënC3-1.jpg'),
-(346,133,'CitroënC4-1.jpg','CitroënC4-1.jpg'),
-(347,133,'CitroënC4-2.jpg','CitroënC4-2.jpg'),
-(348,134,'VolkswagenGolf-1.webp','VolkswagenGolf-1.webp'),
-(349,134,'VolkswagenGolf-2.webp','VolkswagenGolf-2.webp'),
-(350,134,'VolkswagenGolf-3.webp','VolkswagenGolf-3.webp'),
-(351,135,'VolkswagenPolo-1.webp','VolkswagenPolo-1.webp'),
-(352,135,'VolkswagenPolo-2.webp','VolkswagenPolo-2.webp'),
-(353,135,'VolkswagenPolo-3.webp','VolkswagenPolo-3.webp'),
-(354,136,'VolkswagenPassat-1.webp','VolkswagenPassat-1.webp'),
-(355,136,'VolkswagenPassat-2.webp','VolkswagenPassat-2.webp'),
-(356,136,'VolkswagenPassat-3.webp','VolkswagenPassat-3.webp');
+(357,137,'peugeot208-1.webp','peugeot208-1.webp'),
+(358,137,'peugeot208-2.webp','peugeot208-2.webp'),
+(359,137,'peugeot208-3.webp','peugeot208-3.webp'),
+(360,138,'peugeot308-1.webp','peugeot308-1.webp'),
+(361,138,'peugeot308-2.webp','peugeot308-2.webp'),
+(362,138,'peugeot308-3.webp','peugeot308-3.webp'),
+(363,139,'peugeot3008-1.webp','peugeot3008-1.webp'),
+(364,139,'peugeot3008-2.webp','peugeot3008-2.webp'),
+(365,139,'peugeot3008-3.webp','peugeot3008-3.webp'),
+(366,140,'RenaultClio-1.webp','RenaultClio-1.webp'),
+(367,140,'RenaultClio-2.webp','RenaultClio-2.webp'),
+(368,140,'RenaultClio-3.webp','RenaultClio-3.webp'),
+(369,141,'renaultMegane-1.webp','renaultMegane-1.webp'),
+(370,141,'renaultMegane-2.webp','renaultMegane-2.webp'),
+(371,142,'RenaultCaptur-1.webp','RenaultCaptur-1.webp'),
+(372,142,'RenaultCaptur-2.webp','RenaultCaptur-2.webp'),
+(373,143,'DaciaSanderoStepway-1.webp','DaciaSanderoStepway-1.webp'),
+(374,143,'DaciaSanderoStepway-2.webp','DaciaSanderoStepway-2.webp'),
+(375,143,'DaciaSanderoStepway-3.webp','DaciaSanderoStepway-3.webp'),
+(376,143,'DaciaSanderoStepway-4.webp','DaciaSanderoStepway-4.webp'),
+(377,144,'DaciaDuster-1.webp','DaciaDuster-1.webp'),
+(378,144,'DaciaDuster-2.webp','DaciaDuster-2.webp'),
+(379,144,'DaciaDuster-3.webp','DaciaDuster-3.webp'),
+(380,145,'DaciaLogan-1.webp','DaciaLogan-1.webp'),
+(381,146,'CitroënPicasso-1.jpg','CitroënPicasso-1.jpg'),
+(382,146,'CitroënPicasso-2.jpg','CitroënPicasso-2.jpg'),
+(383,147,'CItroënC3-2.jpg','CItroënC3-2.jpg'),
+(384,147,'CitroënC3-1.jpg','CitroënC3-1.jpg'),
+(385,148,'CitroënC4-1.jpg','CitroënC4-1.jpg'),
+(386,148,'CitroënC4-2.jpg','CitroënC4-2.jpg'),
+(387,149,'VolkswagenGolf-1.webp','VolkswagenGolf-1.webp'),
+(388,149,'VolkswagenGolf-2.webp','VolkswagenGolf-2.webp'),
+(389,149,'VolkswagenGolf-3.webp','VolkswagenGolf-3.webp'),
+(390,150,'VolkswagenPolo-1.webp','VolkswagenPolo-1.webp'),
+(391,150,'VolkswagenPolo-2.webp','VolkswagenPolo-2.webp'),
+(392,150,'VolkswagenPolo-3.webp','VolkswagenPolo-3.webp'),
+(393,151,'VolkswagenPassat-1.webp','VolkswagenPassat-1.webp'),
+(394,151,'VolkswagenPassat-2.webp','VolkswagenPassat-2.webp'),
+(395,151,'VolkswagenPassat-3.webp','VolkswagenPassat-3.webp');
 /*!40000 ALTER TABLE `image_car` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,7 +240,7 @@ CREATE TABLE `image_service` (
   PRIMARY KEY (`id`),
   KEY `IDX_748DCD0EED5CA9E6` (`service_id`),
   CONSTRAINT `FK_748DCD0EED5CA9E6` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -250,11 +250,11 @@ CREATE TABLE `image_service` (
 LOCK TABLES `image_service` WRITE;
 /*!40000 ALTER TABLE `image_service` DISABLE KEYS */;
 INSERT INTO `image_service` VALUES
-(79,43,'Entretien et vidange.webp','Entretien et vidange'),
-(80,44,'Révision.webp','Révision'),
-(81,45,'Courroie de distribution.webp','Courroie de distribution'),
-(82,46,'Pneumatique.webp','Pneumatique'),
-(83,47,'Plaquettes de frein.webp','Freinage disque et plaquettes');
+(87,50,'Entretien et vidange.webp','Entretien et vidange'),
+(88,51,'Révision.webp','Révision'),
+(89,52,'Courroie de distribution.webp','Courroie de distribution'),
+(90,53,'Pneumatique.webp','Pneumatique'),
+(91,54,'Plaquettes de frein.webp','Freinage disque et plaquettes');
 /*!40000 ALTER TABLE `image_service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +328,7 @@ CREATE TABLE `service` (
   `price` double NOT NULL,
   `published` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,12 +338,11 @@ CREATE TABLE `service` (
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
 INSERT INTO `service` VALUES
-(43,'Entretien et vidange','Offrez à votre véhicule le soin qu\'il mérite avec notre service d\'entretien et de vidange de premier ordre. \n                Notre équipe d\'experts qualifiés veillera à ce que votre voiture reste en parfait état de marche. \n                Nous utilisons les meilleures huiles et filtres pour garantir une performance optimale et une longévité accrue de votre moteur. \n                Ne négligez pas l\'entretien de votre précieux véhicule, confiez-le à des professionnels qui en prendront soin comme s\'il était le leur.',80,1),
-(44,'Révision','\n            Votre sécurité sur la route est notre priorité numéro un, c\'est pourquoi notre service de révision est conçu\n             pour vous offrir une tranquillité d\'esprit totale. Nos mécaniciens certifiés inspecteront minutieusement \n             chaque composant de votre véhicule, en effectuant les ajustements nécessaires et en remplaçant les pièces usées. \n             Que vous prévoyiez un long voyage ou simplement que vous souhaitiez rouler en toute confiance au quotidien, \n             notre service de révision vous assure que votre véhicule est en parfait état.\n            ',90,1),
-(45,'Courroie de distribution','\n            La courroie de distribution est l\'un des éléments les plus critiques de votre moteur, et son remplacement à \n            intervalles réguliers est essentiel pour éviter les pannes coûteuses. Laissez notre équipe de spécialistes \n            prendre en charge cette tâche délicate. Nous utilisons uniquement des pièces de qualité supérieure pour garantir \n            la fiabilité de votre véhicule. Avec notre service de changement de courroie de distribution, \n            vous pouvez conduire l\'esprit tranquille, en sachant que votre moteur est entre de bonnes mains.\n            ',499,1),
-(46,'Pneumatiques','\n            Les pneus sont la seule liaison entre votre véhicule et la route. Assurez-vous d\'avoir les pneus adaptés à \n            votre conduite et aux conditions routières. Chez nous, vous trouverez un large choix de pneumatiques de haute qualité, \n            adaptés à tous les budgets. Nous vous offrons également un service de montage professionnel pour vous garantir une adhérence optimale, \n            une tenue de route exceptionnelle et une durée de vie prolongée de vos pneus. Roulez en toute sécurité avec nos pneumatiques de qualité supérieure.\n            ',80,1),
-(47,'Freinage - disque et/ou plaquettes','\n            La sécurité de votre véhicule dépend en grande partie de la performance de votre système de freinage. \n            Notre service de freinage et de remplacement de disque de frein est conçu pour garantir un freinage efficace, \n            sans compromis. Nos techniciens expérimentés utilisent uniquement des pièces de rechange de haute qualité \n            pour assurer la réactivité de vos freins dans toutes les situations. Vous pouvez compter sur nous pour maintenir \n            vos freins en parfait état, vous offrant une tranquillité d\'esprit à chaque trajet.\n            ',80,1),
-(49,'test','et',80,1);
+(50,'Entretien et vidange','Offrez à votre véhicule le soin qu\'il mérite avec notre service d\'entretien et de vidange de premier ordre. \n                Notre équipe d\'experts qualifiés veillera à ce que votre voiture reste en parfait état de marche. \n                Nous utilisons les meilleures huiles et filtres pour garantir une performance optimale et une longévité accrue de votre moteur. \n                Ne négligez pas l\'entretien de votre précieux véhicule, confiez-le à des professionnels qui en prendront soin comme s\'il était le leur.',80,1),
+(51,'Révision','\n            Votre sécurité sur la route est notre priorité numéro un, c\'est pourquoi notre service de révision est conçu\n             pour vous offrir une tranquillité d\'esprit totale. Nos mécaniciens certifiés inspecteront minutieusement \n             chaque composant de votre véhicule, en effectuant les ajustements nécessaires et en remplaçant les pièces usées. \n             Que vous prévoyiez un long voyage ou simplement que vous souhaitiez rouler en toute confiance au quotidien, \n             notre service de révision vous assure que votre véhicule est en parfait état.\n            ',90,1),
+(52,'Courroie de distribution','\n            La courroie de distribution est l\'un des éléments les plus critiques de votre moteur, et son remplacement à \n            intervalles réguliers est essentiel pour éviter les pannes coûteuses. Laissez notre équipe de spécialistes \n            prendre en charge cette tâche délicate. Nous utilisons uniquement des pièces de qualité supérieure pour garantir \n            la fiabilité de votre véhicule. Avec notre service de changement de courroie de distribution, \n            vous pouvez conduire l\'esprit tranquille, en sachant que votre moteur est entre de bonnes mains.\n            ',499,1),
+(53,'Pneumatiques','\n            Les pneus sont la seule liaison entre votre véhicule et la route. Assurez-vous d\'avoir les pneus adaptés à \n            votre conduite et aux conditions routières. Chez nous, vous trouverez un large choix de pneumatiques de haute qualité, \n            adaptés à tous les budgets. Nous vous offrons également un service de montage professionnel pour vous garantir une adhérence optimale, \n            une tenue de route exceptionnelle et une durée de vie prolongée de vos pneus. Roulez en toute sécurité avec nos pneumatiques de qualité supérieure.\n            ',80,1),
+(54,'Freinage - disque et/ou plaquettes','\n            La sécurité de votre véhicule dépend en grande partie de la performance de votre système de freinage. \n            Notre service de freinage et de remplacement de disque de frein est conçu pour garantir un freinage efficace, \n            sans compromis. Nos techniciens expérimentés utilisent uniquement des pièces de rechange de haute qualité \n            pour assurer la réactivité de vos freins dans toutes les situations. Vous pouvez compter sur nous pour maintenir \n            vos freins en parfait état, vous offrant une tranquillité d\'esprit à chaque trajet.\n            ',80,1);
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,11 +371,11 @@ CREATE TABLE `service_garage` (
 LOCK TABLES `service_garage` WRITE;
 /*!40000 ALTER TABLE `service_garage` DISABLE KEYS */;
 INSERT INTO `service_garage` VALUES
-(43,9),
-(44,9),
-(45,9),
-(46,9),
-(47,9);
+(50,10),
+(51,10),
+(52,10),
+(53,10),
+(54,10);
 /*!40000 ALTER TABLE `service_garage` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +397,7 @@ CREATE TABLE `testimonial` (
   `created_by` varchar(180) NOT NULL,
   `is_read_by_staff` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -408,7 +407,7 @@ CREATE TABLE `testimonial` (
 LOCK TABLES `testimonial` WRITE;
 /*!40000 ALTER TABLE `testimonial` DISABLE KEYS */;
 INSERT INTO `testimonial` VALUES
-(7,'Jean-Luc','Toujours souriant et profesionnel. j\'approuve !',5,'2023-10-28 19:45:22','2023-10-28 19:45:22',0,'visiteur anonyme',0);
+(8,'Jean-Luc','Toujours souriant et profesionnel. j\'approuve !',5,'2023-11-02 16:20:39','2023-11-02 16:20:39',0,'visiteur anonyme',0);
 /*!40000 ALTER TABLE `testimonial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -456,7 +455,7 @@ CREATE TABLE `user_customer` (
   `is_verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_61B46A09E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -466,7 +465,7 @@ CREATE TABLE `user_customer` (
 LOCK TABLES `user_customer` WRITE;
 /*!40000 ALTER TABLE `user_customer` DISABLE KEYS */;
 INSERT INTO `user_customer` VALUES
-(38,'Cloud','Strife','cloud.strife@gmail.com','[\"ROLE_CLIENT\"]','$2y$13$4fOq3C3dcXAuDE9KKfSLM.Py0i4PJi9Q2O7qrCZmVadaz43jKacBK',1);
+(39,'Cloud','Strife','cloud.strife@gmail.com','[\"ROLE_CLIENT\"]','$2y$13$AD4apulc0FaLyaYirbVBf.1/K8Dexd3mfkKUjrfDKuRELaUfQbaDy',1);
 /*!40000 ALTER TABLE `user_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -489,7 +488,7 @@ CREATE TABLE `user_staff_member` (
   UNIQUE KEY `UNIQ_F55534C1E7927C74` (`email`),
   KEY `IDX_F55534C1C4FFF555` (`garage_id`),
   CONSTRAINT `FK_F55534C1C4FFF555` FOREIGN KEY (`garage_id`) REFERENCES `garage` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,8 +498,8 @@ CREATE TABLE `user_staff_member` (
 LOCK TABLES `user_staff_member` WRITE;
 /*!40000 ALTER TABLE `user_staff_member` DISABLE KEYS */;
 INSERT INTO `user_staff_member` VALUES
-(18,9,'Vincent','Parrot','vincentParrot@VP.com','[\"ROLE_SUPER_ADMIN\"]','$2y$13$4IYLSB9yHfhDTuDSg7/3h.G6z9PQOgOcJYmjyWMsMQ8uqW9oMPTVq'),
-(19,9,'John','Doe','johnDoe@VP.com','[\"ROLE_ADMIN\"]','$2y$13$uRUslSAHGy3uzg0.54ujtef1Ozqjy7xG7JurHwhO.tjR4PjoJhZDm');
+(20,10,'Vincent','Parrot','vincentParrot@VP.com','[\"ROLE_SUPER_ADMIN\"]','$2y$13$jCWLxGtBypfQevozcZPaAeNCNMLlRGh5NrE697sn5Lm6q/UZacxDe'),
+(21,10,'John','Doe','johnDoe@VP.com','[\"ROLE_ADMIN\"]','$2y$13$1dLD7zIq3wgsCaAiUAysOutEwA9RuRcV54BkNzfcEwHTGEbLBjNI6');
 /*!40000 ALTER TABLE `user_staff_member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -513,4 +512,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-02  1:27:04
+-- Dump completed on 2023-11-02 17:22:39
