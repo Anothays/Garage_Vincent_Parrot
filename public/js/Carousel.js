@@ -8,6 +8,8 @@ class Carousel {
         this.next = htmlElement.querySelector('#customCarousel-next ')
         this.items = [...htmlElement.querySelectorAll('#customCarousel .customCarousel-item')]
 
+
+
         /** Valeur d'une translation égale à la largeur d'une card testimonial */
         this.itemWidth =
               Number(getComputedStyle(this.items[0].children[0]).maxWidth.replace('px', ''))
@@ -24,35 +26,18 @@ class Carousel {
             }
             item.style.transition = '0.3s'
         })
+
+        /** Hide next and prev button if not enough cards  */
+        if (this.items.length < this.maxSlidesVisible) {
+            this.prev.style.display = this.next.style.display = 'none'
+            this.items[0].style.marginInline = 'auto'
+            return
+        }
+
         this.prev.addEventListener('click', e => { this.goTo('prev') })
         this.next.addEventListener('click', e => { this.goTo('next') })
 
         window.addEventListener('resize', e => {
-            // switch (true) {
-            //     case (e.target.innerWidth > 1700) :
-            //         console.log('cas 1')
-            //         this.maxSlidesVisible = 5
-            //         break;
-            //     case (e.target.innerWidth > 1400 && e.target.innerWidth <= 1700) :
-            //         console.log('cas 2')
-            //         this.maxSlidesVisible = 4
-            //         break;
-            //     case (e.target.innerWidth > 1200 && e.target.innerWidth <= 1400) :
-            //         console.log('cas 3')
-            //         this.maxSlidesVisible = 3
-            //         break;
-            //     case (e.target.innerWidth > 700 && e.target.innerWidth <= 1200) :
-            //         console.log('cas 4')
-            //         this.maxSlidesVisible = 2
-            //         break;
-            //     case (e.target.innerWidth <= 700) :
-            //         console.log('cas 5')
-            //         this.maxSlidesVisible = 1
-            //         break;
-            //     default:
-            //         return
-            //         break
-            // }
             this.#setSlidesVisible(e)
         })
         this.container.style.maxWidth =  `${this.maxSlidesVisible * this.itemWidth}px`
@@ -106,19 +91,11 @@ class Carousel {
     #setSlidesVisible(event) {
 
         const containerComputedStyle = getComputedStyle(this.container)
-
-        const containerWidth =
-              Number(containerComputedStyle.width.replace('px', ''))
-            // + Number(containerComputedStyle.marginLeft.replace('px', ''))
-            // + Number(containerComputedStyle.marginRight.replace('px', ''))
-
-
+        const containerWidth = Number(containerComputedStyle.width.replace('px', ''))
 
         this.slidesVisible = Math.floor(containerWidth / this.itemWidth)
         this.slidesVisible = this.slidesVisible > this.maxSlidesVisible ? this.maxSlidesVisible : this.slidesVisible
         this.customCarousel.style.width =  `${this.slidesVisible * this.itemWidth}px`
-
-        console.log(containerWidth, this.slidesVisible, this.container.style.width)
 
     }
 }
