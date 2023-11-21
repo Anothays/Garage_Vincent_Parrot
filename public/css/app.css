@@ -3,8 +3,6 @@ body {
   margin: 0;
 }
 
-
-
 .card-header:hover img {
   opacity: 50%;
   border: 1px solid black;

@@ -142,5 +142,6 @@ class FilterInputs {
             this.#getData(url)
         }.bind(this))
     }
+
 }
 

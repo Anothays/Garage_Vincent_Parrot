@@ -1,0 +1,18 @@
+
+
+.customCarousel {
+    display: flex;
+    /*justify-content: center;*/
+    position: relative;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.customCarousel .customCarousel-item {
+    display: none;
+}
+
+.customCarousel .customCarousel-item:is(.customActive) {
+    display: flex;
+    /*transition: 0.3s;*/
+}
