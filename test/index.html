@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mocha.css" />
+  </head>
+  <body>
+  <script src="../public/js/bootstrap/bootstrap.bundle.js"></script>
+
+
+  <script src="https://unpkg.com/chai/chai.js"></script>
+  <script src="../public/js/NotificationToast.js"></script>
+  <script src="../public/js/TriggerFormBtn.js"></script>
+  <script src="../public/js/FilterInputs.js"></script>
+
+
+
+  <div id="mocha"></div>
+  <div id="pagination-list"></div>
+  <div id="pagination-title"></div>
+  <div id="cars-list-container"></div>
+  <div id="mainSection"></div>
+  <div id="filters-btn-reset"></div>
+  <div id="pagination-select"></div>
+  <div class="trigerFormModal"></div>
+
+    <script src="mocha.js"></script>
+
+
+    <script>mocha.setup('bdd');</script>
+
+    <script src="tests.spec.js"></script>
+
+    <script>mocha.run();</script>
+
+  </body>
+</html>

@@ -19,5 +19,10 @@
     {% endif %}
 </div>
 <div class="text-center">
-    <span>© {{ "now"|date("Y") }} - Garage V.Parrot - <a class="text-white" href="{{ path('app_legal_notice') }}">Mentions Légales</a></span>
+    <span>
+        © {{ "now"|date("Y") }} - Garage V.Parrot -
+        <a class="text-white" href="{{ path('app_legal_notice') }}">Mentions Légales</a>
+        -
+        <a class="text-white" href="{{ path('app_privacy_policy') }}">politique de confidentialité</a>
+    </span>
 </div>

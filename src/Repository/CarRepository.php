@@ -22,7 +22,6 @@ class CarRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Car::class);
     }
-
     public function findCarsPaginated(int $page, int $limit = 5): array
     {
         $result = [];
@@ -51,7 +50,6 @@ class CarRepository extends ServiceEntityRepository
         $result['count'] = $paginator->count();
         return $result;
     }
-
     public function findByFilters($value, int $page, int $limit = 5): array
     {
         $result = [];
@@ -70,15 +68,11 @@ class CarRepository extends ServiceEntityRepository
             ->setParameter('yearMax' , new \DateTime("{$value['yearMax']}-12-31"))
             ->orderBy('c.id', 'ASC')
             ->setMaxResults($limit)
-            ->setFirstResult(($page * $limit) - $limit)
-        ;
-
+            ->setFirstResult(($page * $limit) - $limit);
         $paginator = new Paginator($query);
         $data = $paginator->getQuery()->getResult();
-
         // calcul du nombre de pages
         $pages = ceil($paginator->count() / $limit);
-
         $result['data'] = $data;
         $result['pages'] = $pages;
         $result['page'] = $page;
@@ -86,7 +80,6 @@ class CarRepository extends ServiceEntityRepository
         $result['count'] = $paginator->count();
         return $result;
     }
-
     public function getMinMaxValues() {
         return $this
             ->createQueryBuilder('m')

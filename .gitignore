@@ -20,4 +20,4 @@
 ###< symfony/phpunit-bridge ###
 .idea
 
-/.gvp.sql
+node_modules

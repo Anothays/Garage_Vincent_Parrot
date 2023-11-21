@@ -93,12 +93,9 @@ class RegistrationController extends AbstractController
         }
         $user->setIsVerified(true);
         $userRepository->save($user, true);
-
         $this->addFlash('success', 'Compte vérifié ! Vous êtes maintenant inscrit !');
-
         // Authenticate user
         $userAuthenticator->authenticateUser($user, $authenticator, $request);
-
         return $this->redirectToRoute('app_home_index');
     }
 
@@ -117,7 +114,10 @@ class RegistrationController extends AbstractController
 
         // Le bouton de renvoi d'email a été cliqué
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->makeAndSendEmail($verifyEmailHelper, $mailer, $user);
+            $from = $this->staffMemberRepository->findByRole("ROLE_SUPER_ADMIN")[0]->getEmail();
+            $subject = 'Garage Vincent Parrot : validation du compte';
+            $htmlTemplate = 'email/email_verify.html.twig';
+            $this->mailerService->makeAndSendEmail($user, "app_registration_verify_email", $from, $subject, $htmlTemplate);
             $this->addFlash('notice', 'Email de vérification renvoyé');
         }
         return $this->render('registration/send_verify_email.html.twig', [

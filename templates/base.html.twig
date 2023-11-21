@@ -10,10 +10,9 @@
         <title>{% block title %}Garage Vincent Parrot{% endblock %}</title>
         <link rel="icon" href="{{ asset('media/logo4.webp') }}" type="image/png">
 
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-Lux.min.css') }}">
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-Lux.min.css') }}">
+        {% block stylesheets %}{% endblock %}
 
         <script defer src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
         {% block javascripts %}{% endblock %}
@@ -43,6 +42,7 @@
         <footer class="w-100 bg-primary text-light">
             {{ render(controller('App\\Controller\\FooterController::index')) }}
         </footer>
+
     </body>
 
 </html>

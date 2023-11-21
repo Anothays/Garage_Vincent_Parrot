@@ -62,7 +62,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString(): string
     {
-        return "{$this->firstname} {$this->lastname}";
+        return htmlspecialchars("{$this->firstname} {$this->lastname}");
     }
 
     public function getFirstname(): ?string
@@ -91,7 +91,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullname(): string
     {
-        return $this->firstname . " " . $this->lastname;
+        return htmlspecialchars($this->firstname . " " . $this->lastname);
     }
 
     public function getId(): ?int

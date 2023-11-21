@@ -48,7 +48,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'form' => $form,
-            'testimonials' => $testimonialRepository->findBy(["approved" => "1"],["createdAt" => "DESC"], 5, 0),
+            'testimonials' => $testimonialRepository->findBy(["approved" => "1"],["createdAt" => "DESC"]),
             'services' => $servicesRepository->findBy(['published' => 1]),
         ]);
     }

@@ -21,6 +21,20 @@ class ContactMessagesCrudController extends AbstractCrudController
 {
     public function __construct( private EntityManagerInterface $entityManager ){}
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Message')
+            ->setDefaultSort(['createdAt' => 'DESC'])
+            ->setEntityLabelInPlural('Messages')
+            ->setPageTitle('index', 'Liste des messages')
+            ->setPaginatorPageSize(10)
+            ->showEntityActionsInlined()
+            ->setDefaultSort(['createdAt' => 'DESC'])
+            ->setPageTitle(Crud::PAGE_DETAIL, function($message){ return 'Demande de ' . $message->getFullname();})
+            ;
+    }
+
     public static function getEntityFqcn(): string { return ContactMessage::class;}
     public function configureFields(string $pageName): iterable
     {
@@ -43,20 +57,6 @@ class ContactMessagesCrudController extends AbstractCrudController
             ->setFormat('dd/MM/yyyy à HH:mm')
         ;
         yield TextField::new('createdBy')->setLabel('Crée par')->onlyOnDetail();
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setEntityLabelInSingular('Message')
-            ->setDefaultSort(['createdAt' => 'DESC'])
-            ->setEntityLabelInPlural('Messages')
-            ->setPageTitle('index', 'Liste des messages')
-            ->setPaginatorPageSize(10)
-            ->showEntityActionsInlined()
-            ->setDefaultSort(['createdAt' => 'DESC'])
-            ->setPageTitle(Crud::PAGE_DETAIL, function($message){ return 'Demande de ' . $message->getFullname();})
-        ;
     }
 
     public function configureActions(Actions $actions): Actions

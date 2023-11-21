@@ -11,6 +11,7 @@ class ImageService
 
         $tab1 = array_map(fn ($image) => $image->getFilename(), $previousImages);
         $tab2 = array_map(fn ($image) => $image->getFilename(), $currentImages);
+
         return array_diff($tab1, $tab2);
     }
 }
