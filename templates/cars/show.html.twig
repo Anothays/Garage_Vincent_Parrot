@@ -17,7 +17,7 @@
             <div class="carousel-inner">
                 {% for photo in car.getImageCars() %}
                     <div class="carousel-item {{ loop.first ? 'active' : ''}}">
-                        <img src="{{ asset("media/uploads/" ~ photo.filename) }}" class="d-block w-100 mx-auto object-fit-contain" alt="Photo véhicule {{ loop.index }}" style="max-width: 1000px;">
+                        <img src="{{ asset("media/uploads/" ~ photo.filename|url_encode) }}" class="d-block w-100 mx-auto object-fit-contain" alt="Photo véhicule {{ loop.index }}" style="max-width: 1000px;">
                     </div>
                 {% endfor %}
             </div>
