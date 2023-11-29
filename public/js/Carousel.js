@@ -85,7 +85,7 @@ class Carousel {
                 currentActiveItem.style.translate = '0px'
                 newActiveItem.style.translate = `0px`
             }
-        }, 0)
+        }, 10)
     }
 
     #setSlidesVisible(event) {
