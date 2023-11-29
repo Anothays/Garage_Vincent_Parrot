@@ -118,8 +118,8 @@ class CarsCrudController extends AbstractCrudController
          * Suppression des images si la mise à jour de l'entité l'impose
          */
         foreach ($this->imageService->updateImages($entityInstance, 'getImageCars') as $image) {
-            if (is_file("media/uploads/".$image->getFilename())) {
-                unlink("media/uploads/".$image->getFilename());
+            if (is_file("media/uploads/".$image)) {
+                unlink("media/uploads/".$image);
             }
         }
         parent::updateEntity($entityManager, $entityInstance);
