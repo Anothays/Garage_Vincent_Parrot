@@ -5,7 +5,7 @@
             <div class="h-100 carousel-inner bg-primary rounded-top-3 ">
                 {% for photo in car.getImageCars() %}
                     <div class="h-100 carousel-item rounded-top-3 {{ loop.first ? 'active' : ''}} ">
-                        <img src="{{ asset("media/uploads/" ~ photo.filename|url_encode ) }}" class="h-100 w-100 object-fit-cover rounded-top-3"  alt="{{ photo.alt ?? [car.constructor,car.model] | join(' ')}}">
+                        <img src="{{ asset("media/uploads/" ~ photo.filename ) }}" class="h-100 w-100 object-fit-cover rounded-top-3"  alt="{{ photo.alt ?? [car.constructor,car.model] | join(' ')}}">
                     </div>
                 {% endfor %}
             </div>
