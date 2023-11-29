@@ -318,6 +318,51 @@ class AppFixtures extends Fixture
         ;
         $manager->persist($avis1);
 
+        $avis2 = new Testimonial();
+        $avis2
+            ->setAuthor("Blamxis")
+            ->setComment("Félicitations !")
+            ->setNote(5)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis2);
+
+        $avis3 = new Testimonial();
+        $avis3
+            ->setAuthor("Gervaise Macquart")
+            ->setComment("Très bon rapport qualité prix.")
+            ->setNote(4)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis3);
+
+        $avis4 = new Testimonial();
+        $avis4
+            ->setAuthor("Henri")
+            ->setComment("Super garage mais ils sont quand même réussi à casser le vase que j'avais laissé dans le coffre...")
+            ->setNote(3)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis4);
+
+        $avis5 = new Testimonial();
+        $avis5
+            ->setAuthor("Hervé")
+            ->setComment("Bonne adresse. Je reviendrais pour l'entretien annuel")
+            ->setNote(4)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis5);
+
+        $avis6 = new Testimonial();
+        $avis6
+            ->setAuthor("Chris")
+            ->setComment("Bon service mais j'espérais un nettoyage du véhicule offert pour un premier rdv... dommage")
+            ->setNote(3)
+            ->isApproved(false)
+        ;
+        $manager->persist($avis6);
+
         $manager->flush();
     }
 }
