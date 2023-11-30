@@ -27,19 +27,24 @@ class CarController extends AbstractController
         $contactMessage = new ContactMessage();
         $form = $this->createForm(ContactMessageType::class, $contactMessage);
         $form->handleRequest($request);
+
         // Get min and max values in database for mileage, price, registrationYear
         $MinMaxValues = $carsRepository->getMinMaxValues();
+
         // handle ajax filters
         if ($request->headers->get('X-Requested-With') === "XMLHttpRequest") {
+
+            // Handle submit form with ajax
+            if ($form->isSubmitted() && $form->isValid()) {
+                $contactMessageRepository->saveAndUpdateAssociatedCar($contactMessage, $carsRepository);
+                return $this->json([
+                    'message' => 'Nous avons bien reçus votre message, nous reviendrons vers vous aussi vite que possible'
+                ]);
+            }
+
             return $this->handleAjaxFilters($request, $carsRepository, $MinMaxValues);
         }
-        // Handle submit form with ajax
-        if ($form->isSubmitted() && $form->isValid()) {
-            $contactMessageRepository->saveAndUpdateAssociatedCar($contactMessage, $carsRepository);
-            return $this->json([
-                'message' => 'Nous avons bien reçus votre message, nous reviendrons vers vous aussi vite que possible'
-            ]);
-        }
+
         $page = $request->get('page') ?? "1";
         return $this->render('cars/index.html.twig', [
             'cars' => $carsRepository->findCarsPaginated($page),
