@@ -1,11 +1,11 @@
-<li class="card rounded-3 p-0 m-1 border-0" style="width: 300px; height: 650px; min-width: 300px; min-height: 650px; max-width: 300px; max-height: 650px;">
+<li class="card border-0 p-1 " style="width: 300px; height: 650px; min-width: 300px; min-height: 650px; max-width: 300px; max-height: 650px;">
     <article>
         {% if car.getImageCars() is not null %}
         <div id="carousel-{{ loop.index }}" class="carousel slide " data-ride="carousel" style="width: 300px; height: 250px">
-            <div class="h-100 carousel-inner bg-primary rounded-top-3 ">
+            <div class="h-100 carousel-inner bg-primary ">
                 {% for photo in car.getImageCars() %}
-                    <div class="h-100 carousel-item rounded-top-3 {{ loop.first ? 'active' : ''}} ">
-                        <img src="{{ asset("media/uploads/" ~ photo.filename ) }}" class="h-100 w-100 object-fit-cover rounded-top-3"  alt="{{ photo.alt ?? [car.constructor,car.model] | join(' ')}}">
+                    <div class="h-100 carousel-item  {{ loop.first ? 'active' : ''}} ">
+                        <img src="{{ asset("media/uploads/" ~ photo.filename ) }}" class="h-100 w-100 object-fit-cover"  alt="{{ photo.alt ?? [car.constructor,car.model] | join(' ')}}">
                     </div>
                 {% endfor %}
             </div>
@@ -21,7 +21,7 @@
             {% endif %}
         </div>
         {% endif %}
-        <div class="card-body bg-dark-subtle carItem text-center rounded-bottom-3" style="width: 300px; height: 400px">
+        <div class="card-body bg-dark-subtle carItem text-center " style="width: 300px; height: 400px">
             <h3 class="card-title" >
                 <span id="brand-{{ car.id }}">{{ car.carConstructor }}</span>
                 <span id="model-{{ car.id }}">{{ car.carModel }}</span>
