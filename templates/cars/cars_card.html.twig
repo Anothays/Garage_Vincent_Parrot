@@ -1,8 +1,8 @@
-<li class="card border-0 p-1 " style="width: 300px; height: 650px; min-width: 300px; min-height: 650px; max-width: 300px; max-height: 650px;">
+<li class="card border-0 px-4 pb-2 px-sm-1">
     <article>
         {% if car.getImageCars() is not null %}
-        <div id="carousel-{{ loop.index }}" class="carousel slide " data-ride="carousel" style="width: 300px; height: 250px">
-            <div class="h-100 carousel-inner bg-primary ">
+        <div id="carousel-{{ loop.index }}" class="carousel slide" data-ride="carousel">
+            <div class="h-100 carousel-inner bg-primary">
                 {% for photo in car.getImageCars() %}
                     <div class="h-100 carousel-item  {{ loop.first ? 'active' : ''}} ">
                         <img src="{{ asset("media/uploads/" ~ photo.filename ) }}" class="h-100 w-100 object-fit-cover"  alt="{{ photo.alt ?? [car.constructor,car.model] | join(' ')}}">
@@ -21,19 +21,21 @@
             {% endif %}
         </div>
         {% endif %}
-        <div class="card-body bg-dark-subtle carItem text-center " style="width: 300px; height: 400px">
-            <h3 class="card-title" >
-                <span id="brand-{{ car.id }}">{{ car.carConstructor }}</span>
-                <span id="model-{{ car.id }}">{{ car.carModel }}</span>
-            </h3>
+        <div class="card-body d-flex flex-column bg-dark-subtle carItem text-center">
+            {% set concatenatedString = car.carConstructor ~ car.carModel %}
+
+            <div class="card-title {{ concatenatedString|length > 14 ? 'fs-5' : 'fs-4'}} fw-bold text-decoration-underline" >
+                <span id="brand-{{ car.id }}">{{ car.carConstructor }}</span> - <span id="model-{{ car.id }}">{{ car.carModel }}</span>
+            </div>
             <p id="licensePlate-{{ car.id }}">{{ car.licensePlate | upper }}</p>
-            <p>Prix : {{ car.price }} €</p>
+            <p>Prix : <span class="fs-4 fw-bold ">{{ car.price }} €</span></p>
             <p>Kilométrage : {{ car.mileage }} km</p>
             <p>Année : {{ car.registrationDate | date("Y") }}</p>
-            <div class="">
-                <a href="{{ path('app_cars_show', {id: car.id}) }}" class="btn btn-dark rounded-5 mb-3">Plus d'informations</a>
-                <button id="car-{{ car.id }}" type="button" class="btn btn-dark rounded-5 trigerFormModal mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Contacter le vendeur</button>
-            </div>
+
+        </div>
+        <div class="card-footer bg-dark-subtle text-center border-0">
+            <a href="{{ path('app_cars_show', {id: car.id}) }}" class="btn btn-dark rounded-5 mb-3 fs-6">Plus d'informations</a>
+            <button id="car-{{ car.id }}" type="button" class="btn btn-dark rounded-5 trigerFormModal mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Contacter le vendeur</button>
         </div>
     </article>
 </li>

@@ -1,13 +1,13 @@
-<ul id="cars-list-content" class="container-fluid px-5 m-0" >
-    {% if cars is not empty  %}
-    <div class="row justify-content-center">
-    {% for car in cars.data %}
-            {% include 'cars/cars_card.html.twig' %}
-    {% endfor %}
-    </div>
-    {% else %}
-        <div class='alert alert-info'><p class='text-info text-center'>Aucun véhicule en vente</p></div>
-    {% endif %}
-</ul>
+<div class="container-fluid mx-auto m-0 p-0 px-5">
+    <ul id="cars-list-content" class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-5 justify-content-center m-0 p-0" >
+        {% if cars is not empty  %}
+        {% for car in cars.data %}
+                {% include 'cars/cars_card.html.twig' %}
+        {% endfor %}
 
+        {% else %}
+            <div class='alert alert-info'><p class='text-info text-center'>Aucun véhicule en vente</p></div>
+        {% endif %}
+    </ul>
+</div>
 
