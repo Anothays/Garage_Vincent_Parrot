@@ -1,8 +1,8 @@
 <div id="pagination-container" class="text-center">
     {% if cars.count  %}
-        <h2 id="pagination-title" >{{ cars.count }} annonce{{ cars.count > 1 ? 's' : '' }} auto</h2>
+        <h2 id="pagination-title" class="m-0" >{{ cars.count }} annonce{{ cars.count > 1 ? 's' : '' }} auto</h2>
     {% endif %}
-    <nav id="pagination" class="d-flex justify-content-center align-items-center mb-5">
+    <nav id="pagination" class="d-flex justify-content-center align-items-center m-0 pb-5">
         {% include 'cars/pagination_links.html.twig' %}
         <select id="pagination-select" class="form-select w-auto py-1">
             <option value="5" {{ queryParams['selectPagination'] == '5' ? 'selected' : '' }}>5 annonces</option>

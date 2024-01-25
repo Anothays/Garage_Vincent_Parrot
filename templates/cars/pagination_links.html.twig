@@ -1,4 +1,4 @@
-<ol id="pagination-list" class="pagination pagination-sm justify-content-center mx-2 m-0">
+<ol id="pagination-list" class="pagination pagination-sm justify-content-center px-2 m-0">
     {% if cars is not empty and cars.count > 0 and cars.pages > 1 %}
         {% set currentPage = app.request.query.get('page') ?? "1" %}
         {% set nextPage = currentPage + 1 <= cars.pages ? currentPage + 1 : currentPage %}
