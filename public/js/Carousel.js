@@ -8,8 +8,6 @@ class Carousel {
         this.next = htmlElement.querySelector('#customCarousel-next ')
         this.items = [...htmlElement.querySelectorAll('#customCarousel .customCarousel-item')]
 
-
-
         /** Valeur d'une translation égale à la largeur d'une card testimonial */
         this.itemWidth =
               Number(getComputedStyle(this.items[0].children[0]).maxWidth.replace('px', ''))

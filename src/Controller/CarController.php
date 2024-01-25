@@ -30,9 +30,19 @@ class CarController extends AbstractController
 
         // Get min and max values in database for mileage, price, registrationYear
         $MinMaxValues = $carsRepository->getMinMaxValues();
+        $params = [
+            'minMileage' => $request->get('mileage-min') ?? $MinMaxValues['minMileage'],
+            'maxMileage' => $request->get('mileage-max') ?? $MinMaxValues['maxMileage'],
+            'minPrice' => $request->get('price-min') ?? $MinMaxValues['minPrice'],
+            'maxPrice' => $request->get('price-max') ?? $MinMaxValues['maxPrice'],
+            'minYear' => $request->get('year-min') ? new \DateTime("{$request->get('year-min')}-01-01") : $MinMaxValues['minYear'],
+            'maxYear' => $request->get('year-max') ? new \DateTime("{$request->get('year-max')}-12-31") : $MinMaxValues['maxYear'],
+            'selectPagination' => $request->get('selectPagination') % 5 === 0 && $request->get('selectPagination') !== null ? $request->get('selectPagination') : "5",
+            'page' => $request->get('page') ?? "1"
+        ];
 
         // handle ajax filters
-        if ($request->headers->get('X-Requested-With') === "XMLHttpRequest") {
+        if ($request->headers->get('X-Requested-With') === "XMLHttpRequest" && $request->get('ajax') === '1') {
 
             // Handle submit form with ajax
             if ($form->isSubmitted() && $form->isValid()) {
@@ -41,36 +51,25 @@ class CarController extends AbstractController
                     'message' => 'Nous avons bien reçus votre message, nous reviendrons vers vous aussi vite que possible'
                 ]);
             }
-
-            return $this->handleAjaxFilters($request, $carsRepository, $MinMaxValues);
+            return $this->handleAjaxFilters($params, $carsRepository, $MinMaxValues);
         }
 
-        $page = $request->get('page') ?? "1";
         return $this->render('cars/index.html.twig', [
-            'cars' => $carsRepository->findCarsPaginated($page),
-            'MinMaxValues' => $MinMaxValues[0],
+            'cars' => $carsRepository->findByFilters($params),
+            'queryParams' => $params,
+            'minMaxValues' => $MinMaxValues,
             'form' => $form
         ]);
     }
 
-    public function handleAjaxFilters(Request $request, CarRepository $carsRepository, $MinMaxValues) : JsonResponse
+    public function handleAjaxFilters($params, CarRepository $carsRepository, $MinMaxValues) : JsonResponse
     {
-        $params = [
-            'mileageMin' => $request->get('mileage-min') ?? $MinMaxValues[0]['minMileage'],
-            'mileageMax' => $request->get('mileage-max') ?? $MinMaxValues[0]['maxMileage'],
-            'priceMin' => $request->get('price-min') ?? $MinMaxValues[0]['minPrice'],
-            'priceMax' => $request->get('price-max') ?? $MinMaxValues[0]['maxPrice'],
-            'yearMin' => $request->get('year-min') ?? $MinMaxValues[0]['minYear'],
-            'yearMax' => $request->get('year-max') ?? $MinMaxValues[0]['maxYear']
-        ];
-
-        $page = $request->get('page') ?? "1";
-        $selectPagination = $request->get('selectPagination') ?? "5";
-        $cars = $carsRepository->findByFilters($params, $page, $selectPagination);
+        $cars = $carsRepository->findByFilters($params);
         return $this->json([
             'content' => $this->render('cars/cars_list_items.html.twig', ['cars' => $cars]),
             'contentCount' => $cars['count'],
             'pagination' => $this->render('cars/pagination_links.html.twig', ['cars' => $cars]),
+            'queryParams' => $params,
         ]);
 
     }

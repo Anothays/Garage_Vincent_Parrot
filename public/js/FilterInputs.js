@@ -37,6 +37,18 @@ class FilterInputs {
                 new TriggerFormBtn(document.querySelectorAll('.trigerFormModal'))
                 this.#setPagination()
             }
+
+            const queryparams = data.queryParams
+            const maxYear = new Date(queryparams.maxYear).getFullYear()
+            const minYear = new Date(queryparams.minYear).getFullYear()
+            document.getElementById('mileage-min').value = queryparams.minMileage
+            document.getElementById('mileage-max').value = queryparams.maxMileage
+            document.getElementById('price-min').value = queryparams.minPrice
+            document.getElementById('price-max').value = queryparams.maxPrice
+            document.getElementById('year-min').value = Number(minYear)
+            document.getElementById('year-max').value = Number(maxYear)
+            this.#updateUrl(url.href)
+
         })
         .catch(error => {
             carsListItems.innerHTML = "<div class='alert alert-danger'><p class='text-danger-emphasis text-xl-center'>Erreur de chargement</p></div>"
@@ -51,9 +63,17 @@ class FilterInputs {
         const selectPagination = document.getElementById('pagination-select')
         resetButton.addEventListener('click', e => {
             const url = new URL(window.location.href)
-            url.searchParams.append('ajax', '1')
+
+            url.searchParams.set('ajax', '1')
             url.searchParams.set('selectPagination', selectPagination.value)
             url.searchParams.set('page', '1')
+            url.searchParams.delete('mileage-min')
+            url.searchParams.delete('mileage-max')
+            url.searchParams.delete('price-min')
+            url.searchParams.delete('price-max')
+            url.searchParams.delete('year-min')
+            url.searchParams.delete('year-max')
+
             this.#getData(url)
         })
     }
@@ -62,7 +82,7 @@ class FilterInputs {
         const filtersInput = document.querySelectorAll("#filters-form input")
         const selectPagination = document.getElementById('pagination-select')
         filtersInput.forEach(input => {
-            const initialValue = parseInt(input.value)
+            const initialValue = parseInt(input.getAttribute('initialValue'))
             let valueBeforeChanged = input.value
             input.addEventListener('focusin', (e) => {
                 e.preventDefault()
@@ -90,7 +110,7 @@ class FilterInputs {
                         if (e.target.value > oppositeInputValue) {
                             e.target.value = oppositeInputValue
                         }
-                        if (e.target.value < initialValue) {
+                        if (e.target.value < initialValue) { 
                             e.target.value = initialValue
                         }
                         break
@@ -101,10 +121,10 @@ class FilterInputs {
                 const filtersForm = document.getElementById('filters-form')
                 const form = new FormData(filtersForm)
                 const url = new URL(window.location.href)
-                url.searchParams.append('ajax', '1')
+                url.searchParams.set('ajax', '1')
                 url.searchParams.set('page', '1')
-                url.searchParams.append('selectPagination', selectPagination.value)
-                form.forEach((val, key) => url.searchParams.append(key,val))
+                url.searchParams.set('selectPagination', selectPagination.value)
+                form.forEach((val, key) => url.searchParams.set(key,val))
                 this.#getData(url)
             })
         })
@@ -135,12 +155,16 @@ class FilterInputs {
             const filtersForm = document.getElementById('filters-form')
             const form = new FormData(filtersForm)
             const url = new URL(window.location.href)
-            url.searchParams.append('ajax', '1')
+            url.searchParams.set('ajax', '1')
             url.searchParams.set('page', '1')
-            url.searchParams.append('selectPagination', selectPagination.value)
-            form.forEach((val, key) => url.searchParams.append(key,val))
+            url.searchParams.set('selectPagination', selectPagination.value)
+            form.forEach((val, key) => url.searchParams.set(key,val))
             this.#getData(url)
         }.bind(this))
+    }
+    // update URL with correct params
+    #updateUrl(url) {
+        history.replaceState(null, null, url);
     }
 
 }

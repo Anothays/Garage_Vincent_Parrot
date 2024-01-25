@@ -16,8 +16,8 @@
         <div id="carousel" class="carousel carousel-dark slide w-100 my-auto position-relative" data-ride="carousel">
             <div class="carousel-inner">
                 {% for photo in car.getImageCars() %}
-                    <div class="carousel-item {{ loop.first ? 'active' : ''}}">
-                        <img src="{{ asset("media/uploads/" ~ photo.filename) }}" class="d-block w-100 mx-auto object-fit-contain" alt="Photo véhicule {{ loop.index }}" style="max-width: 1000px;">
+                    <div class="carousel-item {{ loop.first ? 'active' : ''}}" style="max-height: 630px">
+                        <img src="{{ asset("media/uploads/" ~ photo.filename) }}" class="d-block w-100 mx-auto" alt="Photo véhicule {{ loop.index }}" >
                     </div>
                 {% endfor %}
             </div>
