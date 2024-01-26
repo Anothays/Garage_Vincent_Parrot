@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
+#[UniqueEntity('licensePlate')]
 class Car
 {
     #[
@@ -21,16 +23,19 @@ class Car
     private ?int $id = null;
 
     #[ORM\Column(length: 9, unique: true)]
-    #[Assert\Regex(pattern: "/^[a-zA-Z]{2}-\d{3}-[a-zA-Z]{2}$/", message: "Veuillez renseigner un numéro de plaque valide. exemple : XX-123-WW")]
+    #[Assert\Regex(pattern: "/^[a-zA-Z]{2}-\d{3}-[a-zA-Z]{2}$/", message: "La valeur doit respecter ce formatage : XX-123-WW")]
     private ?string $licensePlate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\LessThanOrEqual('today', message: "La date ne peut pas être ultérieure à aujourd'hui")]
     private ?\DateTimeInterface $registrationDate = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThanOrEqual(0, message: "Le kilométrage doit être un nombre entier positif")]
     private ?int $mileage = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThanOrEqual(0, message: "Le prix doit être un nombre positif")]
     private ?float $price = null;
 
     #[ORM\Column]
