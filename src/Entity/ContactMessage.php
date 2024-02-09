@@ -13,37 +13,26 @@ class ContactMessage
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
     #[ORM\Column(length: 60)]
     private ?string $firstname = null;
-
     #[ORM\Column(length: 60)]
     private ?string $lastname = null;
-
     #[ORM\Column(length: 180)]
     private ?string $email = null;
-
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $phoneNumber = null;
-
     #[ORM\Column(length: 180)]
     private ?string $subject = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
-
     #[ORM\Column]
     private ?bool $termsAccepted = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
-
     #[ORM\OneToOne(mappedBy: 'contactMessage', cascade: ['persist', 'remove'])]
     private ?ContactMessageCar $concernedCar = null;
-
     #[ORM\Column(length: 180)]
     private ?string $createdBy = 'visiteur anonyme';
-
     #[ORM\Column]
     private ?bool $isReadByStaff = false;
 
@@ -64,7 +53,8 @@ class ContactMessage
 
     public function getFullname(): ?string
     {
-        return htmlspecialchars("{$this->firstname} {$this->lastname}");
+//        return "{$this->firstname} {$this->lastname}";
+            return htmlspecialchars("{$this->firstname} {$this->lastname}");
     }
 
     public function getFirstname(): ?string

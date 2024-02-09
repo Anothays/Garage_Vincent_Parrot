@@ -32,33 +32,27 @@ class ContactMessageRepository extends ServiceEntityRepository
         }
     }
 
-
     public function saveAndUpdateAssociatedCar(ContactMessage $contactMessage, CarRepository | Car $carObject): void
     {
         if ($carObject instanceof CarRepository) {
             // Définition de la regex pour récupérer l'immatriculation
             $regex = '/[A-Z]{2}-\d{3}-[A-Z]{2}/';
-
             // Recherche de la correspondance dans la chaîne
             preg_match($regex, $contactMessage->getSubject(), $matches);
-
             // Vérification si une correspondance a été trouvée
             $immatriculation = $matches[0] ?? null;
-
             $associatedCar = $carObject
                 ->createQueryBuilder('c')
                 ->select('c')
                 ->where('c.licensePlate = :val')
                 ->setParameter('val', $immatriculation)
                 ->getQuery()
-                ->getOneOrNullResult()
-            ;
+                ->getOneOrNullResult();
 
             if (!empty($associatedCar)) {
                 $contactMessageCar = new ContactMessageCar();
                 $contactMessageCar->setCar($associatedCar);
             }
-
             $contactMessage->setConcernedCar($contactMessageCar);
             $this->save($contactMessage, true);
         } else if ($carObject instanceof Car) {
@@ -68,6 +62,7 @@ class ContactMessageRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-
 }
+
+
+

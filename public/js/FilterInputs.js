@@ -12,12 +12,13 @@ class FilterInputs {
         const carsListItems = document.getElementById('cars-list-container')
         const mainSection = document.getElementById('mainSection')
         mainSection.style.opacity = '0.5'
-        carsListItems.innerHTML = '<div class="text-center vh-100"><div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div></div>'
-        fetch(url.href, {
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            }
-        })
+        carsListItems.innerHTML = '' +
+            '<div class="text-center vh-100">' +
+            '<div class="spinner-border" role="status">' +
+            '<span class="visually-hidden">Chargement...</span>' +
+            '</div>' +
+            '</div>'
+        fetch(url.href, { headers: {"X-Requested-With": "XMLHttpRequest",} })
         .then(res => {
             return res.json()
         })
@@ -51,7 +52,9 @@ class FilterInputs {
 
         })
         .catch(error => {
-            carsListItems.innerHTML = "<div class='alert alert-danger'><p class='text-danger-emphasis text-xl-center'>Erreur de chargement</p></div>"
+            carsListItems.innerHTML = "<div class='alert alert-danger'>" +
+                "<p class='text-danger-emphasis text-xl-center'>Erreur de chargement</p>" +
+                "</div>"
         })
         .finally(_ => {
             mainSection.style.opacity = '1'
@@ -168,4 +171,8 @@ class FilterInputs {
     }
 
 }
+
+
+
+
 
